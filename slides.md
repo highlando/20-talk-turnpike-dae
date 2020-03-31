@@ -1,15 +1,18 @@
 ---
-title: Markdown -- Pandoc -- reveal.js -- Beamer
+title: Turnpike and Linear Systems Theory
 author: 
 - Jan Heiland
-- Heiland, Jan
-date: GAMM CSE -- 21 November 2019 
+date: CSC Seminar -- 7 April 2020 
 # institute: GAMM-CSE Workshop G&uuml;zburg, 2019
 bibliography: 
 - example.bib
 ---
 
 # Introduction
+
+## The Real Content
+
+follows soon!
 
 ## What is a Benchmark
 
