@@ -14,7 +14,7 @@ bibliography:
 
 . . .
 
-What is turnpike?
+What is turnpike???
 
 
 ## The Finite Time LQR Problem
