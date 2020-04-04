@@ -41,7 +41,7 @@ where $P$ solves the differential Riccati equation
 $$
 -\dot P = A^ * P + PA -PBB^ * P+C^ * C, \quad P(t _ 1)=F^ * F
 $$
-and feedforward $w$ solves
+and the feedforward $w$ solves
 $$
 -\dot w = (A^ * -P(t)BB^ * )w + C^ * y _ c, \quad w(t _ 1)=-F^ * y _ e.
 $$
