@@ -10,7 +10,7 @@ bibliography:
 
 # Introduction
 
-## {data-background-image="optistatenolog.svg"}
+## {data-background-image="pics/optistatenolog.svg"}
 
 $$
 \DeclareMathOperator{\inva}{d}
