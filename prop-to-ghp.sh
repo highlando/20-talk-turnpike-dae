@@ -1,4 +1,5 @@
 git checkout master
+git checkout index.html
 git add slides.md
 git commit -m 'updated the slides md'
 
