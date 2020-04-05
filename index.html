@@ -34,17 +34,22 @@
   <p class="date">CSC Seminar -- 7 April 2020</p>
 </section>
 
-<section><section id="introduction" class="titleslide slide level1"><h1>Introduction</h1></section><section id="section" class="slide level2" data-background-image="optistatenolog.svg">
+<section><section id="introduction" class="titleslide slide level1"><h1>Introduction</h1></section><section id="section" class="slide level2" data-background-image="pics/optistatenolog.svg">
 <h2></h2>
-<div class="fragment">
-<p>What is turnpike???</p>
-</div>
-</section><section id="the-finite-time-lqr-problem" class="slide level2">
-<h2>The Finite Time LQR Problem</h2>
 <p><span class="math display">\[
 \DeclareMathOperator{\inva}{d}
 \newcommand\mxp[1]{e^{\{#1\}}}
+\def\AP{A _ +}
+\def\APs{A _ +^ * }
+\def\APms{A _ +^{- * }}
+\def\PP{P _ +}
 \]</span></p>
+<div class="fragment">
+<h3 id="what-is-turnpike">What is turnpike?</h3>
+<p>Let <span class="math inline">\(x\)</span> solve an optimal control problem on a finite time horizon <span class="math inline">\([0,t_1]\)</span>. Then the <em>turnpike</em> property holds, if there is an <span class="math inline">\(x_s\)</span> such that <br>for <span class="math inline">\(c\)</span>, <span class="math inline">\(\lambda &gt;0\)</span> independent of <span class="math inline">\(t_1\)</span> and <span class="math inline">\(0\leq t \leq t_1\)</span>, <span class="math display">\[ \| x(t) - x_s \| \leq c(\mxp{-t\lambda} + \mxp{-(t_1-t)\lambda}). \]</span></p>
+</div>
+</section><section id="the-finite-time-lqr-problem" class="slide level2">
+<h2>The Finite Time LQR Problem</h2>
 <p>For <span class="math inline">\(t_1&gt;0\)</span>, <span class="math display">\[\frac 12 \int_{0}^{t_1} \|Cx(s)-y_c\|^2+ \|u(s)\|^2 \inva{s} + \frac 12 \|F x(t_1)-y_e\|^2 \to \min_u\]</span> subject to <span class="math display">\[\dot x(t) = Ax(t) + Bu(t), \quad x(0)=x_0.\]</span></p>
 </section><section id="the-solution" class="slide level2">
 <h2>The Solution</h2>
@@ -68,45 +73,59 @@
 <li><p>If <span class="math inline">\(P(t) \to P _ +\)</span> as <span class="math inline">\(t_1\to \infty\)</span>, then, for some <span class="math inline">\(\sigma&gt;0\)</span>, <span class="math display">\[\|x _ h(t) - \mxp{t(A-BB^ * P _ +)}x_0\| \leq Ce^{\{-(t_1-t)\sigma \}},\]</span> where <span class="math inline">\(x _ h\)</span> is the solution with <span class="math inline">\(y _ e\)</span>, <span class="math inline">\(y _ c=0\)</span>.</p></li>
 <li><p>The solution to the differential Riccati equation <span class="math inline">\(P\)</span> converges to <span class="math inline">\(P _ +\)</span> as <span class="math inline">\(t_1\to \infty\)</span> <strong>if, and only if</strong>, the nullspace of <span class="math inline">\(F^ * F\)</span> and the undetectable subspace of <span class="math inline">\((C,A)\)</span> have no intersection.</p></li>
 </ul>
-</section><section id="what-is-a-benchmark" class="slide level2">
-<h2>What is a Benchmark</h2>
+</section></section>
+<section><section id="explicit-formulas" class="titleslide slide level1"><h1>Explicit Formulas</h1></section><section id="for-the-affine-lqr-problem" class="slide level2">
+<h2>For the affine LQR Problem</h2>
+<p><span class="math display">\[\frac 12 \int_{0}^{t_1} \|Cx(s)-y_c\|^2+ \|u(s)\|^2 \inva{s} + \frac 12 \|F x(t_1)-y_e\|^2 \to \min_u\]</span></p>
+<p>with <span class="math inline">\(y_e\)</span>, <span class="math inline">\(y_c \neq 0\)</span>.</p>
+<h3 id="assumptions">Assumptions</h3>
+<ul>
+<li>the ARE has a unique stabilizing solution <span class="math inline">\(P _ +\)</span></li>
+<li><span class="math inline">\(A _ + := A - BB^ * P _ +\)</span>.</li>
+</ul>
+</section><section id="lemma" class="slide level2">
+<h2>Lemma</h2>
+<p>Let the ARE have a unique stabilizing solution <span class="math inline">\(P _ +\)</span> and let Then the fundamental solution matrix <span class="math inline">\(U\)</span> to <span class="math display">\[
+    \dot U = (A-BB^*P)U, \quad U(t_1)=I,
+  \]</span> where <span class="math inline">\(P\)</span> solves the DRE with <span class="math inline">\(P(t_1)=F^ * F\)</span>, is given as <span class="math display">\[
+    U(t) =
+    \mxp{-(t_1-t)\AP}\bigl(I-[W-\mxp{(t_1-t)\AP}W\mxp{(t_1-t)\APs}](\PP-F^ * F)\bigr),
+  \]</span> where <span class="math inline">\(W:=\int_0^\infty \mxp{sA _ +}BB^ * \mxp{sA _ +^ * }\inva s\)</span>.</p>
+<p><span class="math display">\[\square\]</span></p>
+<p>Proof: See, e.g., BBH19, proof of Theorem 3.4</p>
+</section><section id="lemma-1" class="slide level2">
+<h2>Lemma</h2>
+<p>The feedforward <span class="math inline">\(w\)</span> that solves <span class="math display">\[
+    -\dot w = (A^ * -P(t)BB^ * )w + C^ * y _ c, \quad w(t _ 1)=-F^ * y _ e.
+    \]</span> is given as <span class="math display">\[
+  w(t) =-U(t)^{- * }U(t_1)^ * F^ * y _ e +
+  \int_{t_1}^tU(t)^{-*}U(s)^*C^ * y _ c \inva s
+  \]</span> and can be expressed as <span class="math display">\[
+  w(t) = w_h(t) + \APms C^ * y _ c - \mxp{(t_1-t)\APs}C^ * y _ c + g(t, t_1),
+  \]</span> where <span class="math inline">\(g\)</span> collects all the remainder integral terms.</p>
+</section><section id="lemma-2" class="slide level2">
+<h2>Lemma</h2>
+<p>The optimal state <span class="math inline">\(x\)</span> is given as <span class="math display">\[
+  x(t) = U(t)U(0)^{-1}x_0 - \int_0^t U(t)U(s)^{-1}BB^ * w(s)\inva s
+\]</span> and, with the help of the formulas for <span class="math inline">\(w\)</span> and <span class="math inline">\(U(t)U(s)^{-1}\)</span>, it can be expressed as <span class="math display">\[
+ x(t) = x_h(t) + \AP ^{-1} BB^ * \APms C^ * y_c + G(t, t_1),
+\]</span> with a function <span class="math inline">\(G\)</span> that satisfies the estimate <span class="math display">\[
+\|G(t,t_1) \leq c\mxp{-(t_1 - t)\sigma}.
+\]</span></p>
+</section><section id="theorem" class="slide level2">
+<h2>Theorem</h2>
 <blockquote>
-<p>Basically, everything that would motivate a fellow researchers to use the provided setup and data to <em>benchmark</em> their code.</p>
+<p>Let the ARE have a unique stabilizing solution. <br> Then the affine finite time LQR problem enjoys the turnpike property, <strong>if, and only if</strong>, the nullspace of <span class="math inline">\(F^ * F\)</span> and the undetectable subspace of <span class="math inline">\((C,A)\)</span> have no intersection.</p>
 </blockquote>
-</section><section id="fluid-structure-interaction" class="slide level2">
-<h2>Fluid Structure Interaction</h2>
-<figure>
-<img src="pics/fsi2.gif" alt="Example of a cylinder with a tail" /><figcaption>Example of a cylinder with a tail</figcaption>
-</figure>
+<h3 id="remark">Remark</h3>
 <ul>
-<li>Changing domain.</li>
-<li>Coupling of Models (and scales).</li>
+<li><em>the</em> turnpike is <span class="math inline">\(\AP ^{-1} BB^ * \APms C^ * y_c\)</span>, which is the solution to the steady state optimal control problem <span class="math display">\[
+   \frac 12 \|Cx - y _ c\|^2 + \frac 12 \|u\|^2 \to \min_u, \quad \text{subject to}\quad 0=Ax+Bu.
+   \]</span></li>
 </ul>
 </section></section>
-<section><section id="the-model" class="titleslide slide level1"><h1>The model</h1></section><section id="verbose" class="slide level2">
-<h2>Verbose</h2>
-<ul>
-<li>A fluid flows through a channel with a sphere that can rotate freely.</li>
-<li>The stresses at the sphere/fluid interface induce rotation.</li>
-<li>The <em>no-slip</em> condition induces motion of the flow at the interface.</li>
-</ul>
-</section><section class="slide level2">
-
-<h3 id="the-flow">The flow</h3>
-<span class="math display">\[\begin{equation*}
-        \rho_f\left(\partial_t v + (v \cdot\nabla)v \right) - \nabla \cdot \sigma(v ,p) = 0, \quad \nabla\cdot v  = 0,
-\end{equation*}\]</span>
-with the stress-tensor
-<span class="math display">\[\begin{equation*}
-    \sigma (v,p) = \rho _ f\nu\left( \nabla v+\nabla v^T \right) - p I
-\end{equation*}\]</span>
-and with standard boundary conditions and in particular
-<span class="math display">\[\begin{equation*}
-    v = v_s, \quad \text{on } \mathcal I,
-\end{equation*}\]</span>
-<p>where <span class="math inline">\(v_s\)</span> is the solid's velocity at the fluid-solid interface.</p>
-</section></section>
-<section><section id="implementation" class="titleslide slide level1"><h1>Implementation</h1></section><section id="code-base" class="slide level2">
+<section><section id="some-pictures" class="titleslide slide level1"><h1>Some Pictures</h1></section></section>
+<section><section id="turnpike-for-daes" class="titleslide slide level1"><h1>Turnpike for DAEs</h1></section><section id="code-base" class="slide level2">
 <h2>Code Base</h2>
 <p>There were 5 independent implementations using established libraries:</p>
 <ul>
@@ -153,7 +172,7 @@ and with standard boundary conditions and in particular
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
         width: 1280,
-        height: 960,
+        height: 880,
         // Factor of the display size that should remain empty around the content
         margin: 0.05,
 
