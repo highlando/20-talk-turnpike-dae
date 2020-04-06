@@ -218,11 +218,133 @@ $$
 $$
 
 </div>
+
 # Turnpike for DAEs
 
-# Conclusion
 
-## References
+## The Finite Time LQR Problem
+
+$$
+\def\daE{\mathcal E}
+\def\daA{\mathcal A}
+\def\daF{\mathcal F}
+\def\daC{\mathcal C}
+\def\daB{\mathcal B}
+\def\daP{\mathcal P}
+\def\daPP{\mathcal P _ +}
+\def\daPs{\mathcal P^ * }
+\def\daPD{\mathcal P _ \Delta}
+\def\daPDs{\mathcal P _ \Delta^ * }
+\def\daAP{\mathcal A _ +}
+\def\daAPs{\mathcal A _ +^ * }
+\def\ao{A _ {11}}
+\def\ato{A _ {21}}
+\def\aot{A _ {12}}
+\def\at{A _ {22}}
+\def\atmo{A _ {22}^{-1}}
+\def\atms{A _ {22}^{- * }}
+\def\boo{B _ {11}}
+\def\bto{B _ {21}}
+\def\btos{B _ {21}}
+\def\btt{B _ {22}}
+\def\daPDii{\ensuremath{P _ {\Delta;1}}}
+$$
+
+For $t_1>0$, 
+$$\frac 12 \int_{0}^{t_1} \|\daC x(s)-y_c\|^2+ \|u(s)\|^2 \inva{s} + \frac 12 \|\daF x(t_1)-y_e\|^2 \to \min_u$$
+subject to $$\daE\dot x(t) = \daA x(t) + \daB u(t), \quad \daE x(0)=\daE x_0.$$
+
+. . .
+
+### Question
+
+What is the associated steady state problem? Certainly not simply $0=\daA x + \daB u$.
+
+## Assumptions
+
+ * The matrix pair $(\daE, \daA)$ is regular, i.e., there exists an $s\in \mathbb
+C$ such that $s\daE - \daA$ is invertible.
+
+ * WLOG: the matrix $\daE = \begin{bmatrix} I & 0 \\ 0 & 0 \end{bmatrix}$ is in
+   semi-explicit form.
+
+ * The generalized algebraic Riccati equation
+ $$ \daA^*X + X^*\daA - X^*\daB\daB^*X + \daC^*\daC = 0, \quad \daE^*X=X^ * \daE $$
+ has a *stabilizing* solution $\daPP$.
+
+## Assumptions ctd
+
+ * Here, *stabilizing* means that with
+$$\daA-\daB\daB^ * \daPP =:\daAP= \begin{bmatrix} \ao & \aot \\ \ato & \at
+\end{bmatrix},$$
+
+ * the pencil $(\daE, \daAP)$ is *finite dynamics stable* and *impulse free*,
+
+which means (because of $\daE$ semi-explicit) that
+
+ * $\at$ is invertible and 
+
+ * $\ao-\aot \at ^{-1} \ato$ is *stable*.
+
+## The Hamiltonian System
+
+With $\daPP$ at hand we can consider the Hamiltonian system
+$$
+  \begin{bmatrix}
+    \daE & 0 \\ 0 & \daE^*
+  \end{bmatrix}
+  \frac{d}{dt}
+  \begin{bmatrix}
+  v_{11} \\ v_{12} \\ \tilde v_{21} \\ \tilde v_{22}
+  \end{bmatrix}(t)
+  =
+  \begin{bmatrix}
+    \daAP & -\daB\daB^* \\ 0 & -\daAP^*
+  \end{bmatrix}
+  \begin{bmatrix}
+  v_{11} \\ v_{12} \\ \tilde v_{21} \\ \tilde v_{22}
+  \end{bmatrix}(t)
+$$ 
+
+ * plus initial and terminal conditions, 
+
+ * with, e.g, $v _ {11}(t)\in \mathbb R^{d\times d}$, where $d$ is the rank of
+$\daE$.
+
+## Theorem
+
+Under reasonable compatibility assumptions on $\daF$, the partial solution
+$v _ {11}(t)$ is invertible, and with
+$$
+\daPD(t):=
+\begin{bmatrix}
+  \tilde v_{21}v_{11}^{-1} & 0 \\
+  -a_{22}^{-*}a_{12}^ * \tilde v_{21}v_{11}^{-1} & 0
+\end{bmatrix},
+$$
+the matrix function $\daP(t) := \daPP + \daPD(t)$ solves the generalized differential Riccati equation
+$$
+-\daE^*\dot \daP =  \daA^*\daP + \daP^*\daA - \daP^*\daB\daB^*\daP +
+\daC^*\daC, \quad \daE^*\daP=\daP^*\daE.
+$$
+
+## Corollary
+$$
+    \begin{bmatrix}
+      x_1(t) \\ x_2(t)
+    \end{bmatrix}=
+    \begin{bmatrix}
+      v_{11}(t)v_{11}(t_0)^{-1}x_1(t_0) \\
+      a_{22}^{-1} a_{21}x_1(t) - 
+      a_{22}^{-1} [b_{21}+b_{22}a_{22}^{-*}a_{12}^*]v_{21}(t)v_{11}(t)^{-1}x_1(t)
+    \end{bmatrix}
+$$
+
+
+
+#  Conclusion
+  
+# # References
 
 ---
 nocite: |
