@@ -124,23 +124,66 @@
    \]</span></li>
 </ul>
 </section></section>
-<section><section id="some-pictures" class="titleslide slide level1"><h1>Some Pictures</h1></section></section>
-<section><section id="turnpike-for-daes" class="titleslide slide level1"><h1>Turnpike for DAEs</h1></section><section id="code-base" class="slide level2">
-<h2>Code Base</h2>
-<p>There were 5 independent implementations using established libraries:</p>
-<ul>
-<li><a href="https://ngsolve.org/">Netgen/NGSolve</a></li>
-<li><a href="https://fenicsproject.org/download/">FEniCS/dolfin</a></li>
-<li>Gascoigne</li>
-<li><a href="https://www.scipy.org">SciPy</a></li>
-</ul>
-</section><section id="code-availability" class="slide level2">
-<h2>Code Availability</h2>
-<p>Full data sets for the results as well as all implementations can be found at</p>
-<blockquote>
-<p><a href="https://doi.org/10.5281/zenodo.3253455">DOI: 10.5281/zenodo.3253455</a></p>
-</blockquote>
+<section><section id="some-pictures" class="titleslide slide level1"><h1>Some Pictures</h1></section><section id="section-1" class="slide level2" data-background-image="pics/fiscallvals.svg">
+<h2></h2>
+<div class="fragment">
+<div style="position: absolute; width: 60%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 40px; text-align: left;">
+<h2 id="case-1">Case 1</h2>
+<p><span class="math display">\[
+    \begin{split}
+    A &amp;= 
+    \begin{bmatrix}
+      2 &amp; 0 \\ 0 &amp; -1 
+    \end{bmatrix}\quad
+    B = 
+    \begin{bmatrix}
+      1 \\ 1 
+    \end{bmatrix}\\
+    C &amp;= 
+    \begin{bmatrix}
+      0 &amp; 2 
+    \end{bmatrix} \\
+&amp;\to\text{ not detectable,} \\
+&amp;\to\text{ $P _ +$ exists,}\\
+    F &amp;= C=
+    \begin{bmatrix}
+      0 &amp; 2 
+    \end{bmatrix}
+  \end{split}
+\]</span></p>
+</div>
+</div>
+</section><section id="section-2" class="slide level2" data-background-image="pics/allvals.svg">
+<h2></h2>
+<div class="fragment">
+<div style="position: absolute; width: 60%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 40px; text-align: left;">
+<h2 id="case-2">Case 2</h2>
+<p><span class="math display">\[
+    \begin{split}
+    A &amp;= 
+    \begin{bmatrix}
+      2 &amp; 0 \\ 0 &amp; -1 
+    \end{bmatrix}\quad
+    B = 
+    \begin{bmatrix}
+      1 \\ 1 
+    \end{bmatrix}\\
+    C &amp;= 
+    \begin{bmatrix}
+      0 &amp; 2 
+    \end{bmatrix} \\
+&amp;\to\text{ not detectable,} \\
+&amp;\to\text{ $P _ +$ exists,}\\
+    F &amp;\perp C =
+    \begin{bmatrix}
+      2 &amp; 0 
+    \end{bmatrix}
+  \end{split}
+\]</span></p>
+</div>
+</div>
 </section></section>
+<section><section id="turnpike-for-daes" class="titleslide slide level1"><h1>Turnpike for DAEs</h1></section></section>
 <section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section><section id="references" class="slide level2 unnumbered">
 <h2>References</h2>
 <div id="refs" class="references">
