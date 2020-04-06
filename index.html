@@ -82,12 +82,12 @@
 <p>with <span class="math inline">\(y_e\)</span>, <span class="math inline">\(y_c \neq 0\)</span>.</p>
 <h3 id="assumptions">Assumptions</h3>
 <ul>
-<li>the ARE has a unique stabilizing solution <span class="math inline">\(P _ +\)</span></li>
+<li>The ARE has a unique stabilizing solution <span class="math inline">\(P _ +\)</span>.</li>
 <li><span class="math inline">\(A _ + := A - BB^ * P _ +\)</span>.</li>
 </ul>
 </section><section id="lemma" class="slide level2">
 <h2>Lemma</h2>
-<p>Let the ARE have a unique stabilizing solution <span class="math inline">\(P _ +\)</span> and let Then the fundamental solution matrix <span class="math inline">\(U\)</span> to <span class="math display">\[
+<p>Let the ARE have a unique stabilizing solution <span class="math inline">\(P _ +\)</span>. Then the fundamental solution matrix <span class="math inline">\(U\)</span> to <span class="math display">\[
     \dot U = (A-BB^*P)U, \quad U(t_1)=I,
   \]</span> where <span class="math inline">\(P\)</span> solves the DRE with <span class="math inline">\(P(t_1)=F^ * F\)</span>, is given as <span class="math display">\[
     U(t) =
@@ -112,7 +112,7 @@
 \]</span> and, with the help of the formulas for <span class="math inline">\(w\)</span> and <span class="math inline">\(U(t)U(s)^{-1}\)</span>, it can be expressed as <span class="math display">\[
  x(t) = x_h(t) + \AP ^{-1} BB^ * \APms C^ * y_c + G(t, t_1),
 \]</span> with a function <span class="math inline">\(G\)</span> that satisfies the estimate <span class="math display">\[
-\|G(t,t_1) \leq c\mxp{-(t_1 - t)\sigma}.
+\|G(t,t_1)\| \leq c\mxp{-(t_1 - t)\sigma}.
 \]</span></p>
 </section><section id="theorem" class="slide level2">
 <h2>Theorem</h2>
@@ -121,7 +121,7 @@
 </blockquote>
 <h3 id="remark">Remark</h3>
 <ul>
-<li><em>the</em> turnpike is <span class="math inline">\(\AP ^{-1} BB^ * \APms C^ * y_c\)</span>, which is the solution to the steady state optimal control problem <span class="math display">\[
+<li><em>The</em> turnpike is <span class="math inline">\(\AP ^{-1} BB^ * \APms C^ * y_c\)</span>, which is the solution to the steady state optimal control problem <span class="math display">\[
    \frac 12 \|Cx - y _ c\|^2 + \frac 12 \|u\|^2 \to \min_u, \quad \text{subject to}\quad 0=Ax+Bu.
    \]</span></li>
 </ul>
@@ -150,7 +150,8 @@
     F &amp;= C=
     \begin{bmatrix}
       0 &amp; 2 
-    \end{bmatrix}
+    \end{bmatrix}\\
+    &amp;\to\text{no turnpike!}
   \end{split}
 \]</span></p>
 </div>
@@ -179,7 +180,8 @@
     F &amp;\perp C =
     \begin{bmatrix}
       2 &amp; 0 
-    \end{bmatrix}
+    \end{bmatrix}\\
+    &amp;\to\text{turnpike!}
   \end{split}
 \]</span></p>
 </div>
