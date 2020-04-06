@@ -151,23 +151,72 @@ have no intersection.
 
 # Some Pictures
 
+## {data-background-image="pics/fiscallvals.svg"}
+
+. . .
+
+<div style="position: absolute; width: 60%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 40px; text-align: left;">
+
+## Case 1
+
+$$
+    \begin{split}
+    A &= 
+    \begin{bmatrix}
+      2 & 0 \\ 0 & -1 
+    \end{bmatrix}\quad
+    B = 
+    \begin{bmatrix}
+      1 \\ 1 
+    \end{bmatrix}\\
+    C &= 
+    \begin{bmatrix}
+      0 & 2 
+    \end{bmatrix} \\
+&\to\text{ not detectable,} \\
+&\to\text{ $P _ +$ exists,}\\
+    F &= C=
+    \begin{bmatrix}
+      0 & 2 
+    \end{bmatrix}
+  \end{split}
+$$
+
+</div>
+
+## {data-background-image="pics/allvals.svg"}
+
+. . .
+
+<div style="position: absolute; width: 60%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 40px; text-align: left;">
+
+## Case 2
+
+$$
+    \begin{split}
+    A &= 
+    \begin{bmatrix}
+      2 & 0 \\ 0 & -1 
+    \end{bmatrix}\quad
+    B = 
+    \begin{bmatrix}
+      1 \\ 1 
+    \end{bmatrix}\\
+    C &= 
+    \begin{bmatrix}
+      0 & 2 
+    \end{bmatrix} \\
+&\to\text{ not detectable,} \\
+&\to\text{ $P _ +$ exists,}\\
+    F &\perp C =
+    \begin{bmatrix}
+      2 & 0 
+    \end{bmatrix}
+  \end{split}
+$$
+
+</div>
 # Turnpike for DAEs
-
-## Code Base
-
-There were 5 independent implementations using established libraries:
-
- * [Netgen/NGSolve](https://ngsolve.org/)
- * [FEniCS/dolfin](https://fenicsproject.org/download/)
- * Gascoigne
- * [SciPy](https://www.scipy.org)
-
-
-## Code Availability
-
-Full data sets for the results as well as all implementations can be found at
-
-> [DOI: 10.5281/zenodo.3253455](https://doi.org/10.5281/zenodo.3253455)
 
 # Conclusion
 
