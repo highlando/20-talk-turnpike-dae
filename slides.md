@@ -5,7 +5,7 @@ author:
 date: CSC Seminar -- 7 April 2020 
 # institute: GAMM-CSE Workshop G&uuml;zburg, 2019
 bibliography: 
-- example.bib
+- tpric.bib
 ---
 
 # Introduction
@@ -226,5 +226,5 @@ $$
 
 ---
 nocite: |
-    @WahRLHM19
+    @CalWW94
 ...
