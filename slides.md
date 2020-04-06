@@ -80,13 +80,13 @@ with $y_e$, $y_c \neq 0$.
 
 ### Assumptions
 
- * the ARE has a unique stabilizing solution $P _ +$ 
+ * The ARE has a unique stabilizing solution $P _ +$. 
  * $A _ + := A - BB^ * P _ +$.
 
 
 ## Lemma
 
-  Let the ARE have a unique stabilizing solution $P _ +$ and let 
+  Let the ARE have a unique stabilizing solution $P _ +$.
   Then the fundamental solution matrix $U$ to
   $$
     \dot U = (A-BB^*P)U, \quad U(t_1)=I,
@@ -131,7 +131,7 @@ $$
 $$
 with a function $G$ that satisfies the estimate
 $$
-\|G(t,t_1) \leq c\mxp{-(t_1 - t)\sigma}.
+\|G(t,t_1)\| \leq c\mxp{-(t_1 - t)\sigma}.
 $$
 
 ## Theorem
@@ -143,7 +143,7 @@ have no intersection.
 
 ### Remark
 
- * *the* turnpike is $\AP ^{-1} BB^ * \APms C^ * y_c$, which is the solution to the
+ * *The* turnpike is $\AP ^{-1} BB^ * \APms C^ * y_c$, which is the solution to the
    steady state optimal control problem
    $$
    \frac 12 \|Cx - y _ c\|^2 + \frac 12 \|u\|^2 \to \min_u, \quad \text{subject to}\quad 0=Ax+Bu.
@@ -178,7 +178,8 @@ $$
     F &= C=
     \begin{bmatrix}
       0 & 2 
-    \end{bmatrix}
+    \end{bmatrix}\\
+    &\to\text{no turnpike!}
   \end{split}
 $$
 
@@ -211,7 +212,8 @@ $$
     F &\perp C =
     \begin{bmatrix}
       2 & 0 
-    \end{bmatrix}
+    \end{bmatrix}\\
+    &\to\text{turnpike!}
   \end{split}
 $$
 
