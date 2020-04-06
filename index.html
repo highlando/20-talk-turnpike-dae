@@ -187,15 +187,106 @@
 </div>
 </div>
 </section></section>
-<section><section id="turnpike-for-daes" class="titleslide slide level1"><h1>Turnpike for DAEs</h1></section></section>
-<section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section><section id="references" class="slide level2 unnumbered">
-<h2>References</h2>
-<div id="refs" class="references">
-<div id="ref-CalWW94">
-<p>Callier, Frank M., Joseph Winkin, and Jacques L. Willems. 1994. “Convergence of the Time-Invariant Riccati Differential Equation and LQ-Problem: Mechanisms of Attraction.” <em>International Journal of Control</em> 59 (4). Taylor &amp; Francis: 983–1000. doi:<a href="https://doi.org/10.1080/00207179408923113">10.1080/00207179408923113</a>.</p>
+<section><section id="turnpike-for-daes" class="titleslide slide level1"><h1>Turnpike for DAEs</h1></section><section id="the-finite-time-lqr-problem-1" class="slide level2">
+<h2>The Finite Time LQR Problem</h2>
+<p><span class="math display">\[
+\def\daE{\mathcal E}
+\def\daA{\mathcal A}
+\def\daF{\mathcal F}
+\def\daC{\mathcal C}
+\def\daB{\mathcal B}
+\def\daP{\mathcal P}
+\def\daPP{\mathcal P _ +}
+\def\daPs{\mathcal P^ * }
+\def\daPD{\mathcal P _ \Delta}
+\def\daPDs{\mathcal P _ \Delta^ * }
+\def\daAP{\mathcal A _ +}
+\def\daAPs{\mathcal A _ +^ * }
+\def\ao{A _ {11}}
+\def\ato{A _ {21}}
+\def\aot{A _ {12}}
+\def\at{A _ {22}}
+\def\atmo{A _ {22}^{-1}}
+\def\atms{A _ {22}^{- * }}
+\def\boo{B _ {11}}
+\def\bto{B _ {21}}
+\def\btos{B _ {21}}
+\def\btt{B _ {22}}
+\def\daPDii{\ensuremath{P _ {\Delta;1}}}
+\]</span></p>
+<p>For <span class="math inline">\(t_1&gt;0\)</span>, <span class="math display">\[\frac 12 \int_{0}^{t_1} \|\daC x(s)-y_c\|^2+ \|u(s)\|^2 \inva{s} + \frac 12 \|\daF x(t_1)-y_e\|^2 \to \min_u\]</span> subject to <span class="math display">\[\daE\dot x(t) = \daA x(t) + \daB u(t), \quad \daE x(0)=\daE x_0.\]</span></p>
+<div class="fragment">
+<h3 id="question">Question</h3>
+<p>What is the associated steady state problem? Certainly not simply <span class="math inline">\(0=\daA x + \daB u\)</span>.</p>
 </div>
-</div>
+</section><section id="assumptions-1" class="slide level2">
+<h2>Assumptions</h2>
+<ul>
+<li><p>The matrix pair <span class="math inline">\((\daE, \daA)\)</span> is regular, i.e., there exists an <span class="math inline">\(s\in \mathbb C\)</span> such that <span class="math inline">\(s\daE - \daA\)</span> is invertible.</p></li>
+<li><p>WLOG: the matrix <span class="math inline">\(\daE = \begin{bmatrix} I &amp; 0 \\ 0 &amp; 0 \end{bmatrix}\)</span> is in semi-explicit form.</p></li>
+<li><p>The generalized algebraic Riccati equation <span class="math display">\[ \daA^*X + X^*\daA - X^*\daB\daB^*X + \daC^*\daC = 0, \quad \daE^*X=X^ * \daE \]</span> has a <em>stabilizing</em> solution <span class="math inline">\(\daPP\)</span>.</p></li>
+</ul>
+</section><section id="assumptions-ctd" class="slide level2">
+<h2>Assumptions ctd</h2>
+<ul>
+<li><p>Here, <em>stabilizing</em> means that with <span class="math display">\[\daA-\daB\daB^ * \daPP =:\daAP= \begin{bmatrix} \ao &amp; \aot \\ \ato &amp; \at
+\end{bmatrix},\]</span></p></li>
+<li><p>the pencil <span class="math inline">\((\daE, \daAP)\)</span> is <em>finite dynamics stable</em> and <em>impulse free</em>,</p></li>
+</ul>
+<p>which means (because of <span class="math inline">\(\daE\)</span> semi-explicit) that</p>
+<ul>
+<li><p><span class="math inline">\(\at\)</span> is invertible and</p></li>
+<li><p><span class="math inline">\(\ao-\aot \at ^{-1} \ato\)</span> is <em>stable</em>.</p></li>
+</ul>
+</section><section id="the-hamiltonian-system" class="slide level2">
+<h2>The Hamiltonian System</h2>
+<p>With <span class="math inline">\(\daPP\)</span> at hand we can consider the Hamiltonian system <span class="math display">\[
+  \begin{bmatrix}
+    \daE &amp; 0 \\ 0 &amp; \daE^*
+  \end{bmatrix}
+  \frac{d}{dt}
+  \begin{bmatrix}
+  v_{11} \\ v_{12} \\ \tilde v_{21} \\ \tilde v_{22}
+  \end{bmatrix}(t)
+  =
+  \begin{bmatrix}
+    \daAP &amp; -\daB\daB^* \\ 0 &amp; -\daAP^*
+  \end{bmatrix}
+  \begin{bmatrix}
+  v_{11} \\ v_{12} \\ \tilde v_{21} \\ \tilde v_{22}
+  \end{bmatrix}(t)
+\]</span></p>
+<ul>
+<li><p>plus initial and terminal conditions,</p></li>
+<li><p>with, e.g, <span class="math inline">\(v _ {11}(t)\in \mathbb R^{d\times d}\)</span>, where <span class="math inline">\(d\)</span> is the rank of <span class="math inline">\(\daE\)</span>.</p></li>
+</ul>
+</section><section id="theorem-1" class="slide level2">
+<h2>Theorem</h2>
+<p>Under reasonable compatibility assumptions on <span class="math inline">\(\daF\)</span>, the partial solution <span class="math inline">\(v _ {11}(t)\)</span> is invertible, and with <span class="math display">\[
+\daPD(t):=
+\begin{bmatrix}
+  \tilde v_{21}v_{11}^{-1} &amp; 0 \\
+  -a_{22}^{-*}a_{12}^ * \tilde v_{21}v_{11}^{-1} &amp; 0
+\end{bmatrix},
+\]</span> the matrix function <span class="math inline">\(\daP(t) := \daPP + \daPD(t)\)</span> solves the generalized differential Riccati equation <span class="math display">\[
+-\daE^*\dot \daP =  \daA^*\daP + \daP^*\daA - \daP^*\daB\daB^*\daP +
+\daC^*\daC, \quad \daE^*\daP=\daP^*\daE.
+\]</span></p>
+</section><section id="corollary" class="slide level2">
+<h2>Corollary</h2>
+<p><span class="math display">\[
+    \begin{bmatrix}
+      x_1(t) \\ x_2(t)
+    \end{bmatrix}=
+    \begin{bmatrix}
+      v_{11}(t)v_{11}(t_0)^{-1}x_1(t_0) \\
+      a_{22}^{-1} a_{21}x_1(t) - 
+      a_{22}^{-1} [b_{21}+b_{22}a_{22}^{-*}a_{12}^*]v_{21}(t)v_{11}(t)^{-1}x_1(t)
+    \end{bmatrix}
+\]</span></p>
 </section></section>
+<section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section></section>
+<section><section id="references" class="titleslide slide level1 unnumbered"><h1># References</h1></section></section>
 <section class="footnotes">
 <hr />
 <ol>
