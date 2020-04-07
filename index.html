@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="author" content="Jan Heiland">
+  <meta name="author" content="Jan Heiland (MPI Magdeburg)">
   <title>Turnpike and Linear Systems Theory</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -31,8 +31,7 @@
 
 <section>
   <h1 class="title">Turnpike and Linear Systems Theory</h1>
-  <h2 class="title">Old Formulas and New Results</h2>
-  <p class="author">Jan Heiland</p>
+  <p class="author">Jan Heiland (MPI Magdeburg)</p>
   <p class="date">CSC Seminar -- 7 April 2020</p>
 </section>
 
@@ -42,8 +41,9 @@
 \DeclareMathOperator{\inva}{d}
 \newcommand\mxp[1]{e^{\{#1\}}}
 \def\AP{A _ +}
+\def\bAP{\bar{A} _ +}
 \def\APs{A _ +^ * }
-\def\APms{A _ +^{- * }}
+\def\bAPms{\bar{A} _ +^{- * }}
 \def\PP{P _ +}
 \]</span></p>
 <div class="fragment">
@@ -82,8 +82,8 @@
 <p>with <span class="math inline">\(y_e\)</span>, <span class="math inline">\(y_c \neq 0\)</span>.</p>
 <h3 id="assumptions">Assumptions</h3>
 <ul>
-<li>The ARE has a unique stabilizing solution <span class="math inline">\(P _ +\)</span>.</li>
-<li><span class="math inline">\(A _ + := A - BB^ * P _ +\)</span>.</li>
+<li><p>The ARE has a unique stabilizing solution <span class="math inline">\(P _ +\)</span>.</p></li>
+<li><p><span class="math inline">\(A _ + := A - BB^ * P _ +\)</span>.</p></li>
 </ul>
 </section><section id="lemma" class="slide level2">
 <h2>Lemma</h2>
@@ -246,27 +246,27 @@
   \end{bmatrix}
   \frac{d}{dt}
   \begin{bmatrix}
-  v_{11} \\ v_{12} \\ \tilde v_{21} \\ \tilde v_{22}
+  V_{11} \\ V_{12} \\ \tilde V_{21} \\ \tilde V_{22}
   \end{bmatrix}(t)
   =
   \begin{bmatrix}
     \daAP &amp; -\daB\daB^* \\ 0 &amp; -\daAP^*
   \end{bmatrix}
   \begin{bmatrix}
-  v_{11} \\ v_{12} \\ \tilde v_{21} \\ \tilde v_{22}
+  V_{11} \\ V_{12} \\ \tilde V_{21} \\ \tilde V_{22}
   \end{bmatrix}(t)
 \]</span></p>
 <ul>
 <li><p>plus initial and terminal conditions,</p></li>
-<li><p>with, e.g, <span class="math inline">\(v _ {11}(t)\in \mathbb R^{d\times d}\)</span>, where <span class="math inline">\(d\)</span> is the rank of <span class="math inline">\(\daE\)</span>.</p></li>
+<li><p>with, e.g, <span class="math inline">\(V _ {11}(t)\in \mathbb R^{d\times d}\)</span>, where <span class="math inline">\(d\)</span> is the rank of <span class="math inline">\(\daE\)</span>.</p></li>
 </ul>
 </section><section id="theorem-1" class="slide level2">
 <h2>Theorem</h2>
-<p>Under reasonable compatibility assumptions on <span class="math inline">\(\daF\)</span>, the partial solution <span class="math inline">\(v _ {11}(t)\)</span> is invertible, and with <span class="math display">\[
+<p>Under reasonable compatibility assumptions on <span class="math inline">\(\daF\)</span>, the partial solution <span class="math inline">\(V _ {11}(t)\)</span> is invertible, and with <span class="math display">\[
 \daPD(t):=
 \begin{bmatrix}
-  \tilde v_{21}v_{11}^{-1} &amp; 0 \\
-  -a_{22}^{-*}a_{12}^ * \tilde v_{21}v_{11}^{-1} &amp; 0
+  \tilde V_{21}V_{11}^{-1} &amp; 0 \\
+  -A_{22}^{-*}A_{12}^ * \tilde V_{21}V_{11}^{-1} &amp; 0
 \end{bmatrix},
 \]</span> the matrix function <span class="math inline">\(\daP(t) := \daPP + \daPD(t)\)</span> solves the generalized differential Riccati equation <span class="math display">\[
 -\daE^*\dot \daP =  \daA^*\daP + \daP^*\daA - \daP^*\daB\daB^*\daP +
@@ -274,19 +274,75 @@
 \]</span></p>
 </section><section id="corollary" class="slide level2">
 <h2>Corollary</h2>
+<p>For <span class="math inline">\(y _ e\)</span>, <span class="math inline">\(y _ c=0\)</span> and with <span class="math display">\[x= \begin{bmatrix} x_1(t) \\ x_2(t) \end{bmatrix} \quad \text{and}\quad
+\daB\daB^ *  = \begin{bmatrix} \boo &amp; \bto^ *  \\ \bto &amp; \btt \end{bmatrix}\]</span> partitioned in accordance with <span class="math inline">\(\daE\)</span>, the optimal state reads</p>
 <p><span class="math display">\[
     \begin{bmatrix}
       x_1(t) \\ x_2(t)
     \end{bmatrix}=
     \begin{bmatrix}
-      v_{11}(t)v_{11}(t_0)^{-1}x_1(t_0) \\
-      a_{22}^{-1} a_{21}x_1(t) - 
-      a_{22}^{-1} [b_{21}+b_{22}a_{22}^{-*}a_{12}^*]v_{21}(t)v_{11}(t)^{-1}x_1(t)
-    \end{bmatrix}
+      V_{11}(t)V_{11}(t_0)^{-1}x_1(t_0) \\
+      A_{22}^{-1} A_{21}x_1(t) - 
+      A_{22}^{-1} [B_{21}+B_{22}A_{22}^{-*}A_{12}^*]V_{21}(t)V_{11}(t)^{-1}x_1(t)
+    \end{bmatrix}.
 \]</span></p>
+<p>and the <em>Callier/Willems/Winkin result</em> for <span class="math inline">\(x_1\)</span> is immediate.</p>
+</section><section id="proof" class="slide level2">
+<h2>Proof</h2>
+<ul>
+<li><p>The Hamiltonian system are first order necessary conditions</p></li>
+<li><p>Leaving aside the initial condtions, for any <span class="math inline">\(k\)</span> constant, <span class="math display">\[\begin{bmatrix}
+  x_1(t) \\ x_2(t) \\ \tilde \lambda_1(t) \\ \tilde \lambda_2(t) 
+\end{bmatrix}
+= 
+\begin{bmatrix}
+  V_{11}(t) \\ V_{12}(t) \\ \tilde V_{21}(t) \\ \tilde V_{22}(t) 
+\end{bmatrix} k\]</span> defines a solution.</p></li>
+<li><p>By the DAE <em>stability</em>, we have that</p></li>
+</ul>
+</section><section id="what-is-the-dae-turnpike-then" class="slide level2">
+<h2>What is the DAE Turnpike then?</h2>
+<p>For a general <span class="math inline">\(y _ c\)</span>, it turns out that <span class="math display">\[
+x_1(t) \to \bAP ^{-1} \bar B\bar B^ * \bAPms \bar C^ * y_c 
+\quad\text{as}\quad t_1 \to \infty,
+\]</span> where <span class="math display">\[
+  \bAP:= \ao-\aot\atmo\ato, \quad \bar B:=B_1-\aot\atmo B_2, \quad 
+\]</span> <span class="math display">\[
+  \bar C:=C_1-C_2\atmo\ato.
+\]</span></p>
+<div class="fragment">
+<blockquote>
+<p>The DAE turnpike is defined via the Schur complement of the closed-loop &quot;index-1&quot; system.</p>
+</blockquote>
+</div>
 </section></section>
-<section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section></section>
-<section><section id="references" class="titleslide slide level1 unnumbered"><h1># References</h1></section></section>
+<section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section><section id="section-3" class="slide level2">
+<h2></h2>
+<h3 id="summary">Summary</h3>
+<ul>
+<li><p>Turnpike for a large class of LQR Problems can be derived from classical systems theory results</p></li>
+<li><p>and also extends to DAEs.</p></li>
+</ul>
+<h3 id="outlook">Outlook</h3>
+<ul>
+<li><p>A DAE example?</p></li>
+<li><p>Formulation for infinite-dimensional systems</p></li>
+<li><p>Make use of higher convergence rates when treating nonlinear problems</p></li>
+</ul>
+</section><section id="thank-you" class="slide level2">
+<h2>Thank You!</h2>
+<ul>
+<li><p>For your attention.</p></li>
+<li><p>And thanks to Enrique Zuazua and the <a href="https://cmc.deusto.eus/dycon/">ERC DyCon Project</a> for the support.</p></li>
+</ul>
+</section><section id="references" class="slide level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-CalWW94">
+<p>Callier, Frank M., Joseph Winkin, and Jacques L. Willems. 1994. “Convergence of the Time-Invariant Riccati Differential Equation and LQ-Problem: Mechanisms of Attraction.” <em>International Journal of Control</em> 59 (4). Taylor &amp; Francis: 983–1000. doi:<a href="https://doi.org/10.1080/00207179408923113">10.1080/00207179408923113</a>.</p>
+</div>
+</div>
+</section></section>
 <section class="footnotes">
 <hr />
 <ol>
