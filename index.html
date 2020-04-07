@@ -289,7 +289,7 @@
 </section><section id="proof" class="slide level2">
 <h2>Proof</h2>
 <ul>
-<li><p>The Hamiltonian system are first order necessary conditions</p></li>
+<li><p>The Hamiltonian system is j first order necessary condition.</p></li>
 <li><p>Leaving aside the initial condtions, for any <span class="math inline">\(k\)</span> constant, <span class="math display">\[\begin{bmatrix}
   x_1(t) \\ x_2(t) \\ \tilde \lambda_1(t) \\ \tilde \lambda_2(t) 
 \end{bmatrix}
@@ -297,8 +297,37 @@
 \begin{bmatrix}
   V_{11}(t) \\ V_{12}(t) \\ \tilde V_{21}(t) \\ \tilde V_{22}(t) 
 \end{bmatrix} k\]</span> defines a solution.</p></li>
-<li><p>By the DAE <em>stability</em>, we have that</p></li>
+<li><p>With the invertibility of <span class="math inline">\(V _ {11}\)</span>, we can apply the initial condition: <span class="math display">\[
+ k = V _ {11}(t_0)^{-1}x_0.
+ \]</span></p></li>
 </ul>
+</section><section class="slide level2">
+
+<ul>
+<li><p>By the DAE <em>stability</em>, we have that <span class="math display">\[
+\begin{bmatrix}
+  V_{12}(t) \\  \tilde V_{22}(t) 
+\end{bmatrix} 
+= 
+\begin{bmatrix}
+  s_{11} &amp; s_{12} \\ s_{21} &amp; s_{22}
+\end{bmatrix}
+\begin{bmatrix}
+  V_{11}(t) \\  \tilde V_{21}(t) 
+\end{bmatrix} .
+ \]</span></p></li>
+<li><p>Computing the entries <span class="math inline">\(s_{11}\)</span> and <span class="math inline">\(s_{12}\)</span>, we obtain <span class="math display">\[
+\begin{bmatrix}
+  x_1(t) \\ x_2(t)
+\end{bmatrix}=
+\begin{bmatrix}
+  V_{11}V_{11}(t_0)^{-1}x_1(t_0) \\
+  A_{22}^{-1} A_{21}x_1 - 
+  A_{22}^{-1} [B_{21}+B_{22}A_{22}^{-*}A_{12}^*]V_{21}V_{11}^{-1}x_1
+\end{bmatrix}.
+\]</span></p></li>
+</ul>
+<p><span class="math display">\[\square\]</span></p>
 </section><section id="what-is-the-dae-turnpike-then" class="slide level2">
 <h2>What is the DAE Turnpike then?</h2>
 <p>For a general <span class="math inline">\(y _ c\)</span>, it turns out that <span class="math display">\[
