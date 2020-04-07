@@ -102,7 +102,7 @@ with $y_e$, $y_c \neq 0$.
 
 $$\square$$
 
-Proof: See, e.g., BBH19, proof of Theorem 3.4
+Proof: See, e.g., Behr&Benner&H'19, proof of Theorem 3.4.
 
 ## Lemma
 
@@ -449,4 +449,5 @@ $$
 nocite: |
     @CalWW94
     @PorZ13
+    @BehBH19a
 ...
