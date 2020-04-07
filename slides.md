@@ -91,7 +91,7 @@ with $y_e$, $y_c \neq 0$.
   Let the ARE have a unique stabilizing solution $P _ +$.
   Then the fundamental solution matrix $U$ to
   $$
-    \dot U = (A-BB^*P)U, \quad U(t_1)=I,
+    \dot U(t) = (A-BB^*P(t))U(t), \quad U(t_1)=I,
   $$
   where $P$ solves the DRE with $P(t_1)=F^ * F$, is given as
   $$
