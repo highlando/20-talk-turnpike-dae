@@ -18,6 +18,7 @@ $$
 \def\AP{A _ +}
 \def\bAP{\bar{A} _ +}
 \def\APs{A _ +^ * }
+\def\APms{A _ +^{- * }}
 \def\bAPms{\bar{A} _ +^{- * }}
 \def\PP{P _ +}
 $$
@@ -448,4 +449,5 @@ $$
 ---
 nocite: |
     @CalWW94
+    @PorZ13
 ...
