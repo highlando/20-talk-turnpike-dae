@@ -1,7 +1,7 @@
 ---
 title: Turnpike and Linear Systems Theory
 author: 
-- Jan Heiland
+- Jan Heiland (MPI Magdeburg)
 date: CSC Seminar -- 7 April 2020 
 # institute: GAMM-CSE Workshop G&uuml;zburg, 2019
 bibliography: 
@@ -16,8 +16,9 @@ $$
 \DeclareMathOperator{\inva}{d}
 \newcommand\mxp[1]{e^{\{#1\}}}
 \def\AP{A _ +}
+\def\bAP{\bar{A} _ +}
 \def\APs{A _ +^ * }
-\def\APms{A _ +^{- * }}
+\def\bAPms{\bar{A} _ +^{- * }}
 \def\PP{P _ +}
 $$
 
@@ -81,6 +82,7 @@ with $y_e$, $y_c \neq 0$.
 ### Assumptions
 
  * The ARE has a unique stabilizing solution $P _ +$. 
+
  * $A _ + := A - BB^ * P _ +$.
 
 
@@ -295,31 +297,31 @@ $$
   \end{bmatrix}
   \frac{d}{dt}
   \begin{bmatrix}
-  v_{11} \\ v_{12} \\ \tilde v_{21} \\ \tilde v_{22}
+  V_{11} \\ V_{12} \\ \tilde V_{21} \\ \tilde V_{22}
   \end{bmatrix}(t)
   =
   \begin{bmatrix}
     \daAP & -\daB\daB^* \\ 0 & -\daAP^*
   \end{bmatrix}
   \begin{bmatrix}
-  v_{11} \\ v_{12} \\ \tilde v_{21} \\ \tilde v_{22}
+  V_{11} \\ V_{12} \\ \tilde V_{21} \\ \tilde V_{22}
   \end{bmatrix}(t)
 $$ 
 
  * plus initial and terminal conditions, 
 
- * with, e.g, $v _ {11}(t)\in \mathbb R^{d\times d}$, where $d$ is the rank of
+ * with, e.g, $V _ {11}(t)\in \mathbb R^{d\times d}$, where $d$ is the rank of
 $\daE$.
 
 ## Theorem
 
 Under reasonable compatibility assumptions on $\daF$, the partial solution
-$v _ {11}(t)$ is invertible, and with
+$V _ {11}(t)$ is invertible, and with
 $$
 \daPD(t):=
 \begin{bmatrix}
-  \tilde v_{21}v_{11}^{-1} & 0 \\
-  -a_{22}^{-*}a_{12}^ * \tilde v_{21}v_{11}^{-1} & 0
+  \tilde V_{21}V_{11}^{-1} & 0 \\
+  -A_{22}^{-*}A_{12}^ * \tilde V_{21}V_{11}^{-1} & 0
 \end{bmatrix},
 $$
 the matrix function $\daP(t) := \daPP + \daPD(t)$ solves the generalized differential Riccati equation
@@ -329,22 +331,90 @@ $$
 $$
 
 ## Corollary
+For $y _ e$, $y _ c=0$ and with 
+$$x= \begin{bmatrix} x_1(t) \\ x_2(t) \end{bmatrix} \quad \text{and}\quad
+\daB\daB^ *  = \begin{bmatrix} \boo & \bto^ *  \\ \bto & \btt \end{bmatrix}$$
+partitioned in accordance with $\daE$, the optimal state reads 
+
 $$
     \begin{bmatrix}
       x_1(t) \\ x_2(t)
     \end{bmatrix}=
     \begin{bmatrix}
-      v_{11}(t)v_{11}(t_0)^{-1}x_1(t_0) \\
-      a_{22}^{-1} a_{21}x_1(t) - 
-      a_{22}^{-1} [b_{21}+b_{22}a_{22}^{-*}a_{12}^*]v_{21}(t)v_{11}(t)^{-1}x_1(t)
-    \end{bmatrix}
+      V_{11}(t)V_{11}(t_0)^{-1}x_1(t_0) \\
+      A_{22}^{-1} A_{21}x_1(t) - 
+      A_{22}^{-1} [B_{21}+B_{22}A_{22}^{-*}A_{12}^*]V_{21}(t)V_{11}(t)^{-1}x_1(t)
+    \end{bmatrix}.
 $$
 
+and the *Callier/Willems/Winkin result* for $x_1$ is immediate.
 
+## Proof 
+
+ * The Hamiltonian system are first order necessary conditions
+
+ * Leaving aside the initial condtions, for any $k$ constant, 
+    $$\begin{bmatrix}
+      x_1(t) \\ x_2(t) \\ \tilde \lambda_1(t) \\ \tilde \lambda_2(t) 
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+      V_{11}(t) \\ V_{12}(t) \\ \tilde V_{21}(t) \\ \tilde V_{22}(t) 
+    \end{bmatrix} k$$
+    defines a solution.
+
+ * By the DAE *stability*, we have that
+
+
+  
+
+
+## What is the DAE Turnpike then?
+
+For a general $y _ c$, it turns out that
+$$
+x_1(t) \to \bAP ^{-1} \bar B\bar B^ * \bAPms \bar C^ * y_c 
+\quad\text{as}\quad t_1 \to \infty,
+$$
+where
+$$
+  \bAP:= \ao-\aot\atmo\ato, \quad \bar B:=B_1-\aot\atmo B_2, \quad 
+$$
+$$
+  \bar C:=C_1-C_2\atmo\ato.
+$$
+
+. . .
+
+> The DAE turnpike is defined via the Schur complement of the closed-loop
+> "index-1" system.
 
 #  Conclusion
+
+##
+
+### Summary
+
+ * Turnpike for a large class of LQR Problems can be derived from classical
+   systems theory results
+
+ * and also extends to DAEs.
+
+### Outlook
+
+ * A DAE example?
+
+ * Formulation for infinite-dimensional systems
+
+ * Make use of higher convergence rates when treating nonlinear problems
+
+## Thank You!
+
+ * For your attention.
+
+ * And thanks to Enrique Zuazua and the [ERC DyCon Project](https://cmc.deusto.eus/dycon/) for the support.
   
-# # References
+## References
 
 ---
 nocite: |
