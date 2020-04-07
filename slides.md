@@ -434,9 +434,9 @@ $$
 
  * A DAE example?
 
- * Formulation for infinite-dimensional systems
+ * Formulation for infinite-dimensional systems.
 
- * Make use of higher convergence rates when treating nonlinear problems
+ * Make use of higher convergence rates when treating nonlinear problems.
 
 ## Thank You!
 
