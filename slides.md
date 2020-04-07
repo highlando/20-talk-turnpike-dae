@@ -351,7 +351,7 @@ and the *Callier/Willems/Winkin result* for $x_1$ is immediate.
 
 ## Proof 
 
- * The Hamiltonian system are first order necessary conditions
+ * The Hamiltonian system is j first order necessary condition.
 
  * Leaving aside the initial condtions, for any $k$ constant, 
     $$\begin{bmatrix}
@@ -363,11 +363,40 @@ and the *Callier/Willems/Winkin result* for $x_1$ is immediate.
     \end{bmatrix} k$$
     defines a solution.
 
+ * With the invertibility of $V _ {11}$, we can apply the initial condition:
+ $$
+ k = V _ {11}(t_0)^{-1}x_0.
+ $$
+
+---
+
  * By the DAE *stability*, we have that
+ $$
+    \begin{bmatrix}
+      V_{12}(t) \\  \tilde V_{22}(t) 
+    \end{bmatrix} 
+    = 
+    \begin{bmatrix}
+      s_{11} & s_{12} \\ s_{21} & s_{22}
+    \end{bmatrix}
+    \begin{bmatrix}
+      V_{11}(t) \\  \tilde V_{21}(t) 
+    \end{bmatrix} .
+ $$
 
+ * Computing the entries $s_{11}$ and $s_{12}$, we obtain
+ $$
+    \begin{bmatrix}
+      x_1(t) \\ x_2(t)
+    \end{bmatrix}=
+    \begin{bmatrix}
+      V_{11}V_{11}(t_0)^{-1}x_1(t_0) \\
+      A_{22}^{-1} A_{21}x_1 - 
+      A_{22}^{-1} [B_{21}+B_{22}A_{22}^{-*}A_{12}^*]V_{21}V_{11}^{-1}x_1
+    \end{bmatrix}.
+$$
 
-  
-
+$$\square$$
 
 ## What is the DAE Turnpike then?
 
