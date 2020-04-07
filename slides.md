@@ -41,7 +41,7 @@ subject to $$\dot x(t) = Ax(t) + Bu(t), \quad x(0)=x_0.$$
 
 ## The Solution
 
-Without conditions on $A$, $B$, $C$, $F$, the finite time problem is solved[^1] by
+Without conditions on $A$, $B$, $C$, $F$, the finite time problem is solved by
 
 $$
 \dot x = (A-BB^ * P(t))x - BB^ * w(t), \quad x(0)=x_0,
@@ -58,7 +58,6 @@ $$
 -\dot w = (A^ * -P(t)BB^ * )w + C^ * y _ c, \quad w(t _ 1)=-F^ * y _ e.
 $$
 
-[^1]: see, e.g., Locatelli
 
 ## Theorem: Callier&Willems&Winkin'93
 
