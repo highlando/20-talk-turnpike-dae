@@ -14,3 +14,5 @@ LSTCHSH=$(git rev-parse HEAD)
 git checkout gh-pages
 git cherry-pick $LSTCHSH  # merge only the last commit
 git push
+
+git checkout master
