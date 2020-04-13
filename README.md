@@ -2,7 +2,7 @@
 title: Turnpike and Linear Systems Theory
 author: Jan Heiland
 conference: CSC Seminar
-date: April 7, 2020
+date: April 7 2020
 duration: 40 min
 ---
 
