@@ -1,6 +1,6 @@
 MDFILE=slides.md
 
-pandoc $MDFILE -o slides.html \
+pandoc $MDFILE -o index.html \
     --filter pandoc-citeproc -t revealjs --slide-level=2 -s \
     --mathjax \
     -V theme=solarized -V hash=true \
