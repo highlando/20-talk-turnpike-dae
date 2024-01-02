@@ -1,10 +1,12 @@
 ---
-title: Turnpike and Linear Systems Theory
+title: Turnpike Property and Linear Systems Theory Revisited
 author: 
 - Jan Heiland (MPI Magdeburg)
 date: Guest Talk at USTB -- 4 January 2024 
 bibliography: 
 - talk-tpric.bib
+title-slide-attributes:
+    data-background-image: pics/turnpike.jpg
 ---
 
 # Introduction
