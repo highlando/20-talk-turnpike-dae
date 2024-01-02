@@ -8,17 +8,47 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <link rel="stylesheet" href="/home/heiland/software/gits/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="/home/heiland/software/gits/reveal.js/dist/reveal.css">
   <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-  </style>
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/solarized.css" id="theme">
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="/home/heiland/software/gits/reveal.js/dist/theme/solarized.css" id="theme">
 </head>
 <body>
   <div class="reveal">
@@ -27,7 +57,7 @@
 <section id="title-slide">
   <h1 class="title">Turnpike and Linear Systems Theory</h1>
   <p class="author">Jan Heiland (MPI Magdeburg)</p>
-  <p class="date">CSC Seminar – 7 April 2020</p>
+  <p class="date">Guest Talk at USTB – 4 January 2024</p>
 </section>
 
 <section>
@@ -35,7 +65,8 @@
 <h1>Introduction</h1>
 
 </section>
-<section id="section" class="slide level2" data-background-image="pics/optistatenolog.svg">
+<section id="section" class="slide level2"
+data-background-image="pics/optistatenolog.svg">
 <h2 data-background-image="pics/optistatenolog.svg"></h2>
 <p><span class="math display">\[
 \DeclareMathOperator{\inva}{d}
@@ -49,23 +80,41 @@
 \]</span></p>
 <div class="fragment">
 <h3 id="what-is-turnpike">What is turnpike?</h3>
-<p>Let <span class="math inline">\(x\)</span> solve an optimal control problem on a finite time horizon <span class="math inline">\([0,t_1]\)</span>. Then the <em>turnpike</em> property holds, if there is an <span class="math inline">\(x_s\)</span> such that <br>for <span class="math inline">\(c\)</span>, <span class="math inline">\(\lambda &gt;0\)</span> independent of <span class="math inline">\(t_1\)</span> and <span class="math inline">\(0\leq t \leq t_1\)</span>, <span class="math display">\[ \| x(t) - x_s \| \leq c(\mxp{-t\lambda} + \mxp{-(t_1-t)\lambda}). \]</span></p>
+<p>Let <span class="math inline">\(x\)</span> solve an optimal control
+problem on a finite time horizon <span
+class="math inline">\([0,t_1]\)</span>. Then the <em>turnpike</em>
+property holds, if there is an <span class="math inline">\(x_s\)</span>
+such that <br>for <span class="math inline">\(c\)</span>, <span
+class="math inline">\(\lambda &gt;0\)</span> independent of <span
+class="math inline">\(t_1\)</span> and <span class="math inline">\(0\leq
+t \leq t_1\)</span>, <span class="math display">\[ \| x(t) - x_s \| \leq
+c(\mxp{-t\lambda} + \mxp{-(t_1-t)\lambda}). \]</span></p>
 </div>
 </section>
 <section id="the-finite-time-lqr-problem" class="slide level2">
 <h2>The Finite Time LQR Problem</h2>
-<p>For <span class="math inline">\(t_1&gt;0\)</span>, <span class="math display">\[\frac 12 \int_{0}^{t_1} \|Cx(s)-y_c\|^2+ \|u(s)\|^2 \inva{s} + \frac 12 \|F x(t_1)-y_e\|^2 \to \min_u\]</span> subject to <span class="math display">\[\dot x(t) = Ax(t) + Bu(t), \quad x(0)=x_0.\]</span></p>
+<p>For <span class="math inline">\(t_1&gt;0\)</span>, <span
+class="math display">\[\frac 12 \int_{0}^{t_1} \|Cx(s)-y_c\|^2+
+\|u(s)\|^2 \inva{s} + \frac 12 \|F x(t_1)-y_e\|^2 \to \min_u\]</span>
+subject to <span class="math display">\[\dot x(t) = Ax(t) + Bu(t), \quad
+x(0)=x_0.\]</span></p>
 </section>
 <section id="the-solution" class="slide level2">
 <h2>The Solution</h2>
-<p>Without conditions on <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, <span class="math inline">\(F\)</span>, the finite time problem is solved by</p>
+<p>Without conditions on <span class="math inline">\(A\)</span>, <span
+class="math inline">\(B\)</span>, <span
+class="math inline">\(C\)</span>, <span
+class="math inline">\(F\)</span>, the finite time problem is solved
+by</p>
 <p><span class="math display">\[
 \dot x = (A-BB^ * P(t))x - BB^ * w(t), \quad x(0)=x_0,
 \]</span></p>
 <div class="fragment">
-<p>where <span class="math inline">\(P\)</span> solves the differential Riccati equation <span class="math display">\[
+<p>where <span class="math inline">\(P\)</span> solves the differential
+Riccati equation <span class="math display">\[
 -\dot P = A^ * P + PA -PBB^ * P+C^ * C, \quad P(t _ 1)=F^ * F
-\]</span> and the feedforward <span class="math inline">\(w\)</span> solves <span class="math display">\[
+\]</span> and the feedforward <span class="math inline">\(w\)</span>
+solves <span class="math display">\[
 -\dot w = (A^ * -P(t)BB^ * )w + C^ * y _ c, \quad w(t _ 1)=-F^ * y _ e.
 \]</span></p>
 </div>
@@ -73,11 +122,25 @@
 <section id="theorem-callierwillemswinkin93" class="slide level2">
 <h2>Theorem: Callier&amp;Willems&amp;Winkin’93</h2>
 <blockquote>
-<p>Let there exist a unique stabilizing solution <span class="math inline">\(P _ +\)</span> to <span class="math display">\[A^ * X+XA-XBB^ * X+C^ * C=0 .\]</span></p>
+<p>Let there exist a unique stabilizing solution <span
+class="math inline">\(P _ +\)</span> to <span class="math display">\[A^
+* X+XA-XBB^ * X+C^ * C=0 .\]</span></p>
 </blockquote>
 <ul>
-<li><p>If <span class="math inline">\(P(t) \to P _ +\)</span> as <span class="math inline">\(t_1\to \infty\)</span>, then, for some <span class="math inline">\(\sigma&gt;0\)</span>, <span class="math display">\[\|x _ h(t) - \mxp{t(A-BB^ * P _ +)}x_0\| \leq Ce^{\{-(t_1-t)\sigma \}},\]</span> where <span class="math inline">\(x _ h\)</span> is the solution with <span class="math inline">\(y _ e\)</span>, <span class="math inline">\(y _ c=0\)</span>.</p></li>
-<li><p>The solution to the differential Riccati equation <span class="math inline">\(P\)</span> converges to <span class="math inline">\(P _ +\)</span> as <span class="math inline">\(t_1\to \infty\)</span> <strong>if, and only if</strong>, the nullspace of <span class="math inline">\(F^ * F\)</span> and the undetectable subspace of <span class="math inline">\((C,A)\)</span> have no intersection.</p></li>
+<li><p>If <span class="math inline">\(P(t) \to P _ +\)</span> as <span
+class="math inline">\(t_1\to \infty\)</span>, then, for some <span
+class="math inline">\(\sigma&gt;0\)</span>, <span
+class="math display">\[\|x _ h(t) - \mxp{t(A-BB^ * P _ +)}x_0\| \leq
+Ce^{\{-(t_1-t)\sigma \}},\]</span> where <span class="math inline">\(x _
+h\)</span> is the solution with <span class="math inline">\(y _
+e\)</span>, <span class="math inline">\(y _ c=0\)</span>.</p></li>
+<li><p>The solution to the differential Riccati equation <span
+class="math inline">\(P\)</span> converges to <span
+class="math inline">\(P _ +\)</span> as <span
+class="math inline">\(t_1\to \infty\)</span> <strong>if, and only
+if</strong>, the nullspace of <span class="math inline">\(F^ *
+F\)</span> and the undetectable subspace of <span
+class="math inline">\((C,A)\)</span> have no intersection.</p></li>
 </ul>
 </section></section>
 <section>
@@ -87,55 +150,83 @@
 </section>
 <section id="for-the-affine-lqr-problem" class="slide level2">
 <h2>For the affine LQR Problem</h2>
-<p><span class="math display">\[\frac 12 \int_{0}^{t_1} \|Cx(s)-y_c\|^2+ \|u(s)\|^2 \inva{s} + \frac 12 \|F x(t_1)-y_e\|^2 \to \min_u\]</span></p>
-<p>with <span class="math inline">\(y_e\)</span>, <span class="math inline">\(y_c \neq 0\)</span>.</p>
+<p><span class="math display">\[\frac 12 \int_{0}^{t_1} \|Cx(s)-y_c\|^2+
+\|u(s)\|^2 \inva{s} + \frac 12 \|F x(t_1)-y_e\|^2 \to
+\min_u\]</span></p>
+<p>with <span class="math inline">\(y_e\)</span>, <span
+class="math inline">\(y_c \neq 0\)</span>.</p>
 <h3 id="assumptions">Assumptions</h3>
 <ul>
-<li><p>The ARE has a unique stabilizing solution <span class="math inline">\(P _ +\)</span>.</p></li>
-<li><p><span class="math inline">\(A _ + := A - BB^ * P _ +\)</span>.</p></li>
+<li><p>The ARE has a unique stabilizing solution <span
+class="math inline">\(P _ +\)</span>.</p></li>
+<li><p><span class="math inline">\(A _ + := A - BB^ * P _
++\)</span>.</p></li>
 </ul>
 </section>
 <section id="lemma" class="slide level2">
 <h2>Lemma</h2>
-<p>Let the ARE have a unique stabilizing solution <span class="math inline">\(P _ +\)</span>. Then the fundamental solution matrix <span class="math inline">\(U\)</span> to <span class="math display">\[
+<p>Let the ARE have a unique stabilizing solution <span
+class="math inline">\(P _ +\)</span>. Then the fundamental solution
+matrix <span class="math inline">\(U\)</span> to <span
+class="math display">\[
     \dot U(t) = (A-BB^*P(t))U(t), \quad U(t_1)=I,
-  \]</span> where <span class="math inline">\(P\)</span> solves the DRE with <span class="math inline">\(P(t_1)=F^ * F\)</span>, is given as <span class="math display">\[
+  \]</span> where <span class="math inline">\(P\)</span> solves the DRE
+with <span class="math inline">\(P(t_1)=F^ * F\)</span>, is given as
+<span class="math display">\[
     U(t) =
-    \mxp{-(t_1-t)\AP}\bigl(I-[W-\mxp{(t_1-t)\AP}W\mxp{(t_1-t)\APs}](\PP-F^ * F)\bigr),
-  \]</span> where <span class="math inline">\(W:=\int_0^\infty \mxp{sA _ +}BB^ * \mxp{sA _ +^ * }\inva s\)</span>.</p>
+    \mxp{-(t_1-t)\AP}\bigl(I-[W-\mxp{(t_1-t)\AP}W\mxp{(t_1-t)\APs}](\PP-F^
+* F)\bigr),
+  \]</span> where <span class="math inline">\(W:=\int_0^\infty \mxp{sA _
++}BB^ * \mxp{sA _ +^ * }\inva s\)</span>.</p>
 <p><span class="math display">\[\square\]</span></p>
 <p>Proof: See, e.g., Behr&amp;Benner&amp;H’19, proof of Theorem 3.4.</p>
 </section>
 <section id="lemma-1" class="slide level2">
 <h2>Lemma</h2>
-<p>The feedforward <span class="math inline">\(w\)</span> that solves <span class="math display">\[
-    -\dot w = (A^ * -P(t)BB^ * )w + C^ * y _ c, \quad w(t _ 1)=-F^ * y _ e.
+<p>The feedforward <span class="math inline">\(w\)</span> that solves
+<span class="math display">\[
+    -\dot w = (A^ * -P(t)BB^ * )w + C^ * y _ c, \quad w(t _ 1)=-F^ * y _
+e.
     \]</span> is given as <span class="math display">\[
   w(t) =-U(t)^{- * }U(t_1)^ * F^ * y _ e +
   \int_{t_1}^tU(t)^{-*}U(s)^*C^ * y _ c \inva s
   \]</span> and can be expressed as <span class="math display">\[
-  w(t) = w_h(t) + \APms C^ * y _ c - \mxp{(t_1-t)\APs}C^ * y _ c + g(t, t_1),
-  \]</span> where <span class="math inline">\(g\)</span> collects all the remainder integral terms.</p>
+  w(t) = w_h(t) + \APms C^ * y _ c - \mxp{(t_1-t)\APs}C^ * y _ c + g(t,
+t_1),
+  \]</span> where <span class="math inline">\(g\)</span> collects all
+the remainder integral terms.</p>
 </section>
 <section id="lemma-2" class="slide level2">
 <h2>Lemma</h2>
-<p>The optimal state <span class="math inline">\(x\)</span> is given as <span class="math display">\[
+<p>The optimal state <span class="math inline">\(x\)</span> is given as
+<span class="math display">\[
   x(t) = U(t)U(0)^{-1}x_0 - \int_0^t U(t)U(s)^{-1}BB^ * w(s)\inva s
-\]</span> and, with the help of the formulas for <span class="math inline">\(w\)</span> and <span class="math inline">\(U(t)U(s)^{-1}\)</span>, it can be expressed as <span class="math display">\[
- x(t) = x_h(t) + \AP ^{-1} BB^ * \APms C^ * y_c + G(t, t_1),
-\]</span> with a function <span class="math inline">\(G\)</span> that satisfies the estimate <span class="math display">\[
+\]</span> and, with the help of the formulas for <span
+class="math inline">\(w\)</span> and <span
+class="math inline">\(U(t)U(s)^{-1}\)</span>, it can be expressed as
+<span class="math display">\[
+x(t) = x_h(t) + \AP ^{-1} BB^ * \APms C^ * y_c + G(t, t_1),
+\]</span> with a function <span class="math inline">\(G\)</span> that
+satisfies the estimate <span class="math display">\[
 \|G(t,t_1)\| \leq c\mxp{-(t_1 - t)\sigma}.
 \]</span></p>
 </section>
 <section id="theorem" class="slide level2">
 <h2>Theorem</h2>
 <blockquote>
-<p>Let the ARE have a unique stabilizing solution. <br> Then the affine finite time LQR problem enjoys the turnpike property, <strong>if, and only if</strong>, the nullspace of <span class="math inline">\(F^ * F\)</span> and the undetectable subspace of <span class="math inline">\((C,A)\)</span> have no intersection.</p>
+<p>Let the ARE have a unique stabilizing solution. <br> Then the affine
+finite time LQR problem enjoys the turnpike property, <strong>if, and
+only if</strong>, the nullspace of <span class="math inline">\(F^ *
+F\)</span> and the undetectable subspace of <span
+class="math inline">\((C,A)\)</span> have no intersection.</p>
 </blockquote>
 <h3 id="remark">Remark</h3>
 <ul>
-<li><em>The</em> turnpike is <span class="math inline">\(\AP ^{-1} BB^ * \APms C^ * y_c\)</span>, which is the solution to the steady state optimal control problem <span class="math display">\[
-\frac 12 \|Cx - y _ c\|^2 + \frac 12 \|u\|^2 \to \min_u, \quad \text{subject to}\quad 0=Ax+Bu.
+<li><em>The</em> turnpike is <span class="math inline">\(\AP ^{-1} BB^ *
+\APms C^ * y_c\)</span>, which is the solution to the steady state
+optimal control problem <span class="math display">\[
+\frac 12 \|Cx - y _ c\|^2 + \frac 12 \|u\|^2 \to \min_u, \quad
+\text{subject to}\quad 0=Ax+Bu.
 \]</span></li>
 </ul>
 </section></section>
@@ -144,59 +235,63 @@
 <h1>Some Pictures</h1>
 
 </section>
-<section id="section-1" class="slide level2" data-background-image="pics/fiscallvals.svg">
+<section id="section-1" class="slide level2"
+data-background-image="pics/fiscallvals.svg">
 <h2 data-background-image="pics/fiscallvals.svg"></h2>
 </section>
-<section id="case-1" class="slide level2" style="position: absolute; width: 60%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 40px; text-align: left;">
+<section id="case-1" class="slide level2"
+style="position: absolute; width: 60%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 40px; text-align: left;">
 <h2>Case 1</h2>
 <p><span class="math display">\[
     \begin{split}
-    A &amp;= 
+    A &amp;=
     \begin{bmatrix}
-      2 &amp; 0 \\ 0 &amp; -1 
+      2 &amp; 0 \\ 0 &amp; -1
     \end{bmatrix}\quad
-    B = 
+    B =
     \begin{bmatrix}
-      1 \\ 1 
+      1 \\ 1
     \end{bmatrix}\\
-    C &amp;= 
+    C &amp;=
     \begin{bmatrix}
-      0 &amp; 2 
+      0 &amp; 2
     \end{bmatrix} \\
 &amp;\to\text{ not detectable,} \\
 &amp;\to\text{ $P _ +$ exists,}\\
     F &amp;= C=
     \begin{bmatrix}
-      0 &amp; 2 
+      0 &amp; 2
     \end{bmatrix}\\
     &amp;\to\text{no turnpike!}
   \end{split}
 \]</span></p>
 </section>
-<section id="section-2" class="slide level2" data-background-image="pics/allvals.svg">
+<section id="section-2" class="slide level2"
+data-background-image="pics/allvals.svg">
 <h2 data-background-image="pics/allvals.svg"></h2>
 </section>
-<section id="case-2" class="slide level2" style="position: absolute; width: 60%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 40px; text-align: left;">
+<section id="case-2" class="slide level2"
+style="position: absolute; width: 60%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 40px; text-align: left;">
 <h2>Case 2</h2>
 <p><span class="math display">\[
     \begin{split}
-    A &amp;= 
+    A &amp;=
     \begin{bmatrix}
-      2 &amp; 0 \\ 0 &amp; -1 
+      2 &amp; 0 \\ 0 &amp; -1
     \end{bmatrix}\quad
-    B = 
+    B =
     \begin{bmatrix}
-      1 \\ 1 
+      1 \\ 1
     \end{bmatrix}\\
-    C &amp;= 
+    C &amp;=
     \begin{bmatrix}
-      0 &amp; 2 
+      0 &amp; 2
     \end{bmatrix} \\
 &amp;\to\text{ not detectable,} \\
 &amp;\to\text{ $P _ +$ exists,}\\
     F &amp;\perp C =
     \begin{bmatrix}
-      2 &amp; 0 
+      2 &amp; 0
     \end{bmatrix}\\
     &amp;\to\text{turnpike!}
   \end{split}
@@ -234,36 +329,56 @@
 \def\btt{B _ {22}}
 \def\daPDii{\ensuremath{P _ {\Delta;1}}}
 \]</span></p>
-<p>For <span class="math inline">\(t_1&gt;0\)</span>, <span class="math display">\[\frac 12 \int_{0}^{t_1} \|\daC x(s)-y_c\|^2+ \|u(s)\|^2 \inva{s} + \frac 12 \|\daF x(t_1)-y_e\|^2 \to \min_u\]</span> subject to <span class="math display">\[\daE\dot x(t) = \daA x(t) + \daB u(t), \quad \daE x(0)=\daE x_0.\]</span></p>
+<p>For <span class="math inline">\(t_1&gt;0\)</span>, <span
+class="math display">\[\frac 12 \int_{0}^{t_1} \|\daC x(s)-y_c\|^2+
+\|u(s)\|^2 \inva{s} + \frac 12 \|\daF x(t_1)-y_e\|^2 \to \min_u\]</span>
+subject to <span class="math display">\[\daE\dot x(t) = \daA x(t) + \daB
+u(t), \quad \daE x(0)=\daE x_0.\]</span></p>
 <div class="fragment">
 <h3 id="question">Question</h3>
-<p>What is the associated steady state problem? Certainly not simply <span class="math inline">\(0=\daA x + \daB u\)</span>.</p>
+<p>What is the associated steady state problem? Certainly not simply
+<span class="math inline">\(0=\daA x + \daB u\)</span>.</p>
 </div>
 </section>
 <section id="assumptions-1" class="slide level2">
 <h2>Assumptions</h2>
 <ul>
-<li><p>The matrix pair <span class="math inline">\((\daE, \daA)\)</span> is regular, i.e., there exists an <span class="math inline">\(s\in \mathbb C\)</span> such that <span class="math inline">\(s\daE - \daA\)</span> is invertible.</p></li>
-<li><p>WLOG: the matrix <span class="math inline">\(\daE = \begin{bmatrix} I &amp; 0 \\ 0 &amp; 0 \end{bmatrix}\)</span> is in semi-explicit form.</p></li>
-<li><p>The generalized algebraic Riccati equation <span class="math display">\[ \daA^*X + X^*\daA - X^*\daB\daB^*X + \daC^*\daC = 0, \quad \daE^*X=X^ * \daE \]</span> has a <em>stabilizing</em> solution <span class="math inline">\(\daPP\)</span>.</p></li>
+<li><p>The matrix pair <span class="math inline">\((\daE, \daA)\)</span>
+is regular, i.e., there exists an <span class="math inline">\(s\in
+\mathbb C\)</span> such that <span class="math inline">\(s\daE -
+\daA\)</span> is invertible.</p></li>
+<li><p>WLOG: the matrix <span class="math inline">\(\daE =
+\begin{bmatrix} I &amp; 0 \\ 0 &amp; 0 \end{bmatrix}\)</span> is in
+semi-explicit form.</p></li>
+<li><p>The generalized algebraic Riccati equation <span
+class="math display">\[ \daA^*X + X^*\daA - X^*\daB\daB^*X + \daC^*\daC
+= 0, \quad \daE^*X=X^ * \daE \]</span> has a <em>stabilizing</em>
+solution <span class="math inline">\(\daPP\)</span>.</p></li>
 </ul>
 </section>
 <section id="assumptions-ctd" class="slide level2">
 <h2>Assumptions ctd</h2>
 <ul>
-<li><p>Here, <em>stabilizing</em> means that with <span class="math display">\[\daA-\daB\daB^ * \daPP =:\daAP= \begin{bmatrix} \ao &amp; \aot \\ \ato &amp; \at
+<li><p>Here, <em>stabilizing</em> means that with <span
+class="math display">\[\daA-\daB\daB^ * \daPP =:\daAP= \begin{bmatrix}
+\ao &amp; \aot \\ \ato &amp; \at
 \end{bmatrix},\]</span></p></li>
-<li><p>the pencil <span class="math inline">\((\daE, \daAP)\)</span> is <em>finite dynamics stable</em> and <em>impulse free</em>,</p></li>
+<li><p>the pencil <span class="math inline">\((\daE, \daAP)\)</span> is
+<em>finite dynamics stable</em> and <em>impulse free</em>,</p></li>
 </ul>
-<p>which means (because of <span class="math inline">\(\daE\)</span> semi-explicit) that</p>
+<p>which means (because of <span class="math inline">\(\daE\)</span>
+semi-explicit) that</p>
 <ul>
-<li><p><span class="math inline">\(\at\)</span> is invertible and</p></li>
-<li><p><span class="math inline">\(\ao-\aot \at ^{-1} \ato\)</span> is <em>stable</em>.</p></li>
+<li><p><span class="math inline">\(\at\)</span> is invertible
+and</p></li>
+<li><p><span class="math inline">\(\ao-\aot \at ^{-1} \ato\)</span> is
+<em>stable</em>.</p></li>
 </ul>
 </section>
 <section id="the-hamiltonian-system" class="slide level2">
 <h2>The Hamiltonian System</h2>
-<p>With <span class="math inline">\(\daPP\)</span> at hand we can consider the Hamiltonian system <span class="math display">\[
+<p>With <span class="math inline">\(\daPP\)</span> at hand we can
+consider the Hamiltonian system <span class="math display">\[
   \begin{bmatrix}
     \daE &amp; 0 \\ 0 &amp; \daE^*
   \end{bmatrix}
@@ -281,95 +396,119 @@
 \]</span></p>
 <ul>
 <li><p>plus initial and terminal conditions,</p></li>
-<li><p>with, e.g, <span class="math inline">\(V _ {11}(t)\in \mathbb R^{d\times d}\)</span>, where <span class="math inline">\(d\)</span> is the rank of <span class="math inline">\(\daE\)</span>.</p></li>
+<li><p>with, e.g, <span class="math inline">\(V _ {11}(t)\in \mathbb
+R^{d\times d}\)</span>, where <span class="math inline">\(d\)</span> is
+the rank of <span class="math inline">\(\daE\)</span>.</p></li>
 </ul>
 </section>
 <section id="theorem-1" class="slide level2">
 <h2>Theorem</h2>
-<p>Under reasonable compatibility assumptions on <span class="math inline">\(\daF\)</span>, the partial solution <span class="math inline">\(V _ {11}(t)\)</span> is invertible, and with <span class="math display">\[
+<p>Under reasonable compatibility assumptions on <span
+class="math inline">\(\daF\)</span>, the partial solution <span
+class="math inline">\(V _ {11}(t)\)</span> is invertible, and with <span
+class="math display">\[
 \daPD(t):=
 \begin{bmatrix}
   \tilde V_{21}V_{11}^{-1} &amp; 0 \\
   -A_{22}^{-*}A_{12}^ * \tilde V_{21}V_{11}^{-1} &amp; 0
 \end{bmatrix},
-\]</span> the matrix function <span class="math inline">\(\daP(t) := \daPP + \daPD(t)\)</span> solves the generalized differential Riccati equation <span class="math display">\[
+\]</span> the matrix function <span class="math inline">\(\daP(t) :=
+\daPP + \daPD(t)\)</span> solves the generalized differential Riccati
+equation <span class="math display">\[
 -\daE^*\dot \daP =  \daA^*\daP + \daP^*\daA - \daP^*\daB\daB^*\daP +
 \daC^*\daC, \quad \daE^*\daP=\daP^*\daE.
 \]</span></p>
 </section>
 <section id="corollary" class="slide level2">
 <h2>Corollary</h2>
-<p>For <span class="math inline">\(y _ e\)</span>, <span class="math inline">\(y _ c=0\)</span> and with <span class="math display">\[x= \begin{bmatrix} x_1(t) \\ x_2(t) \end{bmatrix} \quad \text{and}\quad
-\daB\daB^ *  = \begin{bmatrix} \boo &amp; \bto^ *  \\ \bto &amp; \btt \end{bmatrix}\]</span> partitioned in accordance with <span class="math inline">\(\daE\)</span>, the optimal state reads</p>
+<p>For <span class="math inline">\(y _ e\)</span>, <span
+class="math inline">\(y _ c=0\)</span> and with <span
+class="math display">\[x= \begin{bmatrix} x_1(t) \\ x_2(t) \end{bmatrix}
+\quad \text{and}\quad
+\daB\daB^ *  = \begin{bmatrix} \boo &amp; \bto^ *  \\ \bto &amp; \btt
+\end{bmatrix}\]</span> partitioned in accordance with <span
+class="math inline">\(\daE\)</span>, the optimal state reads</p>
 <p><span class="math display">\[
     \begin{bmatrix}
       x_1(t) \\ x_2(t)
     \end{bmatrix}=
     \begin{bmatrix}
       V_{11}(t)V_{11}(t_0)^{-1}x_1(t_0) \\
-      A_{22}^{-1} A_{21}x_1(t) - 
-      A_{22}^{-1} [B_{21}+B_{22}A_{22}^{-*}A_{12}^*]V_{21}(t)V_{11}(t)^{-1}x_1(t)
+      A_{22}^{-1} A_{21}x_1(t) -
+      A_{22}^{-1}
+[B_{21}+B_{22}A_{22}^{-*}A_{12}^*]V_{21}(t)V_{11}(t)^{-1}x_1(t)
     \end{bmatrix}.
 \]</span></p>
-<p>and the <em>Callier/Willems/Winkin result</em> for <span class="math inline">\(x_1\)</span> is immediate.</p>
+<p>and the <em>Callier/Willems/Winkin result</em> for <span
+class="math inline">\(x_1\)</span> is immediate.</p>
 </section>
 <section id="proof" class="slide level2">
 <h2>Proof</h2>
 <ul>
-<li><p>The Hamiltonian system is j first order necessary condition.</p></li>
-<li><p>Leaving aside the initial condtions, for any <span class="math inline">\(k\)</span> constant, <span class="math display">\[\begin{bmatrix}
-   x_1(t) \\ x_2(t) \\ \tilde \lambda_1(t) \\ \tilde \lambda_2(t) 
- \end{bmatrix}
- = 
- \begin{bmatrix}
-   V_{11}(t) \\ V_{12}(t) \\ \tilde V_{21}(t) \\ \tilde V_{22}(t) 
- \end{bmatrix} k\]</span> defines a solution.</p></li>
-<li><p>With the invertibility of <span class="math inline">\(V _ {11}\)</span>, we can apply the initial condition: <span class="math display">\[
- k = V _ {11}(t_0)^{-1}x_0.
- \]</span></p></li>
+<li><p>The Hamiltonian system is j first order necessary
+condition.</p></li>
+<li><p>Leaving aside the initial condtions, for any <span
+class="math inline">\(k\)</span> constant, <span
+class="math display">\[\begin{bmatrix}
+   x_1(t) \\ x_2(t) \\ \tilde \lambda_1(t) \\ \tilde \lambda_2(t)
+\end{bmatrix}
+=
+\begin{bmatrix}
+   V_{11}(t) \\ V_{12}(t) \\ \tilde V_{21}(t) \\ \tilde V_{22}(t)
+\end{bmatrix} k\]</span> defines a solution.</p></li>
+<li><p>With the invertibility of <span class="math inline">\(V _
+{11}\)</span>, we can apply the initial condition: <span
+class="math display">\[
+k = V _ {11}(t_0)^{-1}x_0.
+\]</span></p></li>
 </ul>
 </section>
 <section class="slide level2">
 
 <ul>
-<li><p>By the DAE <em>stability</em>, we have that <span class="math display">\[
- \begin{bmatrix}
-   V_{12}(t) \\  \tilde V_{22}(t) 
- \end{bmatrix} 
- = 
- \begin{bmatrix}
+<li><p>By the DAE <em>stability</em>, we have that <span
+class="math display">\[
+\begin{bmatrix}
+   V_{12}(t) \\  \tilde V_{22}(t)
+\end{bmatrix}
+=
+\begin{bmatrix}
    s_{11} &amp; s_{12} \\ s_{21} &amp; s_{22}
- \end{bmatrix}
- \begin{bmatrix}
-   V_{11}(t) \\  \tilde V_{21}(t) 
- \end{bmatrix} .
- \]</span></p></li>
-<li><p>Computing the entries <span class="math inline">\(s_{11}\)</span> and <span class="math inline">\(s_{12}\)</span>, we obtain <span class="math display">\[
- \begin{bmatrix}
+\end{bmatrix}
+\begin{bmatrix}
+   V_{11}(t) \\  \tilde V_{21}(t)
+\end{bmatrix} .
+\]</span></p></li>
+<li><p>Computing the entries <span class="math inline">\(s_{11}\)</span>
+and <span class="math inline">\(s_{12}\)</span>, we obtain <span
+class="math display">\[
+\begin{bmatrix}
    x_1(t) \\ x_2(t)
- \end{bmatrix}=
- \begin{bmatrix}
+\end{bmatrix}=
+\begin{bmatrix}
    V_{11}V_{11}(t_0)^{-1}x_1(t_0) \\
-   A_{22}^{-1} A_{21}x_1 - 
+   A_{22}^{-1} A_{21}x_1 -
    A_{22}^{-1} [B_{21}+B_{22}A_{22}^{-*}A_{12}^*]V_{21}V_{11}^{-1}x_1
- \end{bmatrix}.
+\end{bmatrix}.
 \]</span></p></li>
 </ul>
 <p><span class="math display">\[\square\]</span></p>
 </section>
 <section id="what-is-the-dae-turnpike-then" class="slide level2">
 <h2>What is the DAE Turnpike then?</h2>
-<p>For a general <span class="math inline">\(y _ c\)</span>, it turns out that <span class="math display">\[
-x_1(t) \to \bAP ^{-1} \bar B\bar B^ * \bAPms \bar C^ * y_c 
+<p>For a general <span class="math inline">\(y _ c\)</span>, it turns
+out that <span class="math display">\[
+x_1(t) \to \bAP ^{-1} \bar B\bar B^ * \bAPms \bar C^ * y_c
 \quad\text{as}\quad t_1 \to \infty,
 \]</span> where <span class="math display">\[
-  \bAP:= \ao-\aot\atmo\ato, \quad \bar B:=B_1-\aot\atmo B_2, \quad 
+  \bAP:= \ao-\aot\atmo\ato, \quad \bar B:=B_1-\aot\atmo B_2, \quad
 \]</span> <span class="math display">\[
   \bar C:=C_1-C_2\atmo\ato.
 \]</span></p>
 <div class="fragment">
 <blockquote>
-<p>The DAE turnpike is defined via the Schur complement of the closed-loop “index-1” system.</p>
+<p>The DAE turnpike is defined via the Schur complement of the
+closed-loop “index-1” system.</p>
 </blockquote>
 </div>
 </section></section>
@@ -382,66 +521,221 @@ x_1(t) \to \bAP ^{-1} \bar B\bar B^ * \bAPms \bar C^ * y_c
 <h2></h2>
 <h3 id="summary">Summary</h3>
 <ul>
-<li><p>Turnpike for a large class of LQR Problems can be derived from classical systems theory results</p></li>
+<li><p>Turnpike for a large class of LQR Problems can be derived from
+classical systems theory results</p></li>
 <li><p>and also extends to DAEs.</p></li>
 </ul>
 <h3 id="outlook">Outlook</h3>
 <ul>
 <li><p>A DAE example?</p></li>
 <li><p>Formulation for infinite-dimensional systems.</p></li>
-<li><p>Make use of higher convergence rates when treating nonlinear problems.</p></li>
+<li><p>Make use of higher convergence rates when treating nonlinear
+problems.</p></li>
 </ul>
 </section>
 <section id="thank-you" class="slide level2">
 <h2>Thank You!</h2>
 <ul>
 <li><p>For your attention.</p></li>
-<li><p>And thanks to Enrique Zuazua and the <a href="https://cmc.deusto.eus/dycon/">ERC DyCon Project</a> for the support.</p></li>
+<li><p>And thanks to Enrique Zuazua and the <a
+href="https://cmc.deusto.eus/dycon/">ERC DyCon Project</a> for the
+support.</p></li>
 </ul>
 </section>
 <section id="references" class="slide level2 unnumbered">
 <h2 class="unnumbered">References</h2>
-<div id="refs" class="references hanging-indent" role="doc-bibliography">
-<div id="ref-BehBH19a">
-<p>Behr, Maximilian, Peter Benner, and Jan Heiland. 2019. “Invariant Galerkin Ansatz Spaces and Davison-Maki Methods for the Numerical Solution of Differential Riccati Equations.” <em>arXiv E-Prints</em>, October, 1–33. <a href="http://arxiv.org/abs/1910.13362">http://arxiv.org/abs/1910.13362</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="list">
+<div id="ref-BehBH19" class="csl-entry" role="listitem">
+Behr, M., P. Benner, and J. Heiland. 2019. <span>“Solution Formulas for
+Differential <span>S</span>ylvester and <span>L</span>yapunov
+Equations.”</span> <em>Calcolo</em> 56 (4): 1–51. <a
+href="https://doi.org/10.1007/s10092-019-0348-x">https://doi.org/10.1007/s10092-019-0348-x</a>.
 </div>
-<div id="ref-CalWW94">
-<p>Callier, Frank M., Joseph Winkin, and Jacques L. Willems. 1994. “Convergence of the Time-Invariant Riccati Differential Equation and LQ-Problem: Mechanisms of Attraction.” <em>International Journal of Control</em> 59 (4): 983–1000. <a href="https://doi.org/10.1080/00207179408923113">https://doi.org/10.1080/00207179408923113</a>.</p>
+<div id="ref-CalWW94" class="csl-entry" role="listitem">
+F. M. Callier, J. Winkin, and J. L. Willems. 1994. <span>“Convergence of
+the Time-Invariant Riccati Differential Equation and
+<span>LQ</span>-Problem: Mechanisms of Attraction.”</span>
+<em>International Journal of Control</em> 59 (4): 983–1000. <a
+href="https://doi.org/10.1080/00207179408923113">https://doi.org/10.1080/00207179408923113</a>.
+</div>
+<div id="ref-HeiZ21" class="csl-entry" role="listitem">
+Heiland, J., and E. Zuazua. 2021. <span>“Classical System Theory
+Revisited for Turnpike in Standard State Space Systems and Impulse
+Controllable Descriptor Systems.”</span> <em>SIAM J. Control Optim.</em>
+59 (5): 3600–3624. <a
+href="https://doi.org/10.1137/20M1356105">https://doi.org/10.1137/20M1356105</a>.
 </div>
 </div>
 </section></section>
     </div>
   </div>
 
-  <script src="https://unpkg.com/reveal.js@^4//dist/reveal.js"></script>
+  <script src="/home/heiland/software/gits/reveal.js/dist/reveal.js"></script>
 
-  // reveal.js plugins
-  <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
-  <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
-  <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
-  <script src="https://unpkg.com/reveal.js@^4//plugin/math/math.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="/home/heiland/software/gits/reveal.js/plugin/notes/notes.js"></script>
+  <script src="/home/heiland/software/gits/reveal.js/plugin/search/search.js"></script>
+  <script src="/home/heiland/software/gits/reveal.js/plugin/zoom/zoom.js"></script>
+  <script src="/home/heiland/software/gits/reveal.js/plugin/math/math.js"></script>
 
   <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
       Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
         // Add the current slide number to the URL hash so that reloading the
         // page/copying the URL will return you to the same slide
         hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
         // Push each slide change to the browser history
-        history: true,
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
         // Number of slides away from the current that are visible
         viewDistance: 15,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
         width: 1280,
+
         height: 880,
+
         // Factor of the display size that should remain empty around the content
         margin: 0.05,
+
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
