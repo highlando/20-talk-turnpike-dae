@@ -1,0 +1,292 @@
+\documentclass[xcolor=dvipsnames,10pt,hyperref={breaklinks=true}]{beamer}
+\useoutertheme{miniframes}
+
+\input{def}
+
+\usetheme{sthlm}
+\usepackage{times,bm,amsfonts,amsmath,amssymb,amsthm,tikz,fancybox} 
+\usepackage{dsfont}
+\usepackage{xspace}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{animate}
+\usepackage{calc}
+\usepackage{multicol}
+\usepackage{dcolumn}
+\usepackage[babel=true,kerning=true]{microtype}
+\usepackage[T1]{fontenc} 
+\usepackage{color, colortbl}
+\usepackage{beamerthemesplit}
+\usepackage{mathrsfs} 
+\usepackage{xcolor}
+\usepackage[english]{varioref}
+\usepackage{subfig}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{tcolorbox}
+\usetikzlibrary{matrix,external,fit}
+
+\setbeamercovered{dynamic}
+\setbeamertemplate{blocks}[shadow=true]
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{section in toc}[mysections numbered]
+\addtobeamertemplate{block begin}{\setlength\abovedisplayskip{0pt}\setlength\belowdisplayskip{0pt}}
+
+\DisableLigatures{encoding = *, family = * }
+
+\title{Turnpike in \\ Linear Systems Theory}
+\subtitle{Old Results and New Formulas}
+\date{\small{\jobname}}
+\author{Jan Heiland \\ \scriptsize DeustoTech, Universidad de Deusto, Bilbao, Spain} 
+\date{February 25, 2020}
+
+\begin{document}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FRAME	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+\maketitle
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FRAME	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[b]
+\frametitle{Old Results}
+Consider, for $t_1>0$,
+\begin{equation*}
+  \int_{0}^{t_1} \|Cx(s)-y_c\|^2+ \|u(s)\|^2\inva s + \|F x(t_1)-y_e\|^2
+  \to \min
+\end{equation*}
+subject to
+\begin{equation*}
+  \dot x(t) = Ax(t) + Bu(t), \quad x(0)=x_0.
+\end{equation*}
+
+\begin{theorem}[Callier/Winkin/Willems'94 with $y_c=0$ and $y_e=0$]
+  Let $(A,B)$ be stabilizable and let
+  \begin{equation}
+    A^*X+XA-XBB^*X+C^*C=0 \tag{ARE}
+  \end{equation}
+  have a unique stabilizing solution $\PP$. Then:
+  \begin{itemize}
+    \item If $P(t) \to \PP$ as $t_1\to \infty$, then, for some $\lambda>0$,
+      \begin{equation*}
+        \|x(t) - \mxp{t(A-BB^*\PP)}x_0\| \leq C\mxp{-(t_1-t)\lambda}.
+      \end{equation*}
+    \item The solution to the differential Riccati equation $P$ converges to
+      $\PP$ as $t_1\to \infty$ \textbf{if, and only if}, the nullspace of $F^*F$ and the
+      undetectable subspace of $(C,A)$ have no intersection.
+  \end{itemize}
+\end{theorem}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Numerical Example}
+\uncover<2>{
+  \begin{minipage}[t]{0.28\linewidth}
+    \begin{center}
+    $F\perp C$:\\[.05in]
+    \hline
+    \input{pics/riccatientries.tex}
+    % \hlinpic
+    \input{pics/optistate.tex}
+    % \hlinpic
+    \input{pics/optiout.tex}
+  \end{center}
+  \vfill
+  \end{minipage}
+  \begin{minipage}[t]{0.28\linewidth}
+    \begin{center}
+      $F=C$:\\[.05in]
+    \hline
+    \input{pics/fiscriccatientries.tex}
+    % \hlinpic
+    \input{pics/fiscoptistate.tex}
+    % \hlinpic
+    \input{pics/fiscoptiout.tex}
+  \end{center}
+  \vfill
+  \end{minipage}
+}
+  \begin{minipage}[t]{0.4\linewidth}
+  \begin{itemize}
+    \item System
+  \begin{equation*}
+    \begin{split}
+    A &= 
+    \begin{bmatrix}
+      2 & 0 \\ 0 & -1 
+    \end{bmatrix}\\
+    B &= 
+    \begin{bmatrix}
+      1 \\ 1 
+    \end{bmatrix}\\
+    C &= 
+    \begin{bmatrix}
+      0 & 2 
+    \end{bmatrix}
+  \end{split}
+  \end{equation*}
+    \item Not detectable but
+    \item (ARE) has a stabilizing solution.
+    \item 
+  Simulations with
+  \begin{equation*}
+    \begin{split}
+    x_0=
+    \begin{bmatrix}
+      1 \\ 1 
+    \end{bmatrix}, \\y_c=0, \quad y_e=1.
+  \end{split}
+  \end{equation*}
+  \end{itemize}
+  \vfill
+  \end{minipage}%
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FRAME	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{New Formulas for $y_e$ and $y_c$ not zero}
+Main tool: an explicit formula\footnote{Not unknown before, but explicitly
+derived in Behr/Benner/Heiland'19} for $U$ that solves
+\begin{equation*}
+  \dot U(t) = (A-BB^*P(t))U(t), \quad U(t_1)=I,
+\end{equation*}
+and that defines the state transition like
+\begin{align*}
+  x(t) &= U(t)U(t_0)^{-1}x_0 + \int_0^t U(t)U(s)^{-1}w(s)\inva s,
+\end{align*}
+where $w$ is the feedforward (the affine) part that satisfies
+\begin{equation*}
+  -\dot w(t) = (A^*-P(t)BB^*)w(t), \quad w(t_1)=-F^*y_e,
+\end{equation*}
+or
+\begin{equation*}
+  w(t):=-U(t)^{-*}U(t_1)^*F^*y_e + \int_{t_1}^tU(t)^{-*}U(s)^*C^*y_c.
+\end{equation*}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{New Formulas for $y_e$ and $y_c$ not zero}
+
+  With this $U$, we find that
+\begin{align*}
+  x(t) &= U(t)U(t_0)^{-1}x_0 + \int_0^T U(t)U(s)^{-1}w(s)\inva s \\
+       &= \quad \quad ...\\
+       &= U(t)U(t_0)^{-1}x_0 + \AP^{-1}BB^*\AP^{-*}C^*y_c + G(t,t_1),
+\end{align*}
+
+\begin{itemize}
+  \item where $U(t)U(t_0)^{-1}x_0$ is the solution to the problem with $y_c$,
+    $y_e=0$,
+  \item where
+    \begin{equation*}
+    \AP^{-1}BB^*\AP^{-*}C^*y_c = (A-BB^*\PP)^{-1}BB^*(A-BB^*\PP)^{-*}C^*y_c
+  \end{equation*}
+    is the steady state optimal solution,
+  \item and where, for some constant $M$ independent of $t_1$, 
+    \begin{equation*}
+    \|G(t,t_1)\| \leq
+    M\mxp{-(t_1-t)\lambda}+M\mxp{-(t_1-t)2\lambda}+M\mxp{-(t_1-t)3\lambda} .
+  \end{equation*}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Next steps and discussion}
+
+\begin{itemize}
+  \item The transition maps also cover the time-dependent case...
+  \item Transition maps (and turnpike) for LQR Problems with DAE constraints
+  \begin{equation*}
+    E \dot x = Ax + Bu, \quad Ex(0)=Ex_0.
+  \end{equation*}
+  \begin{itemize}
+    \item $E$ is nonsingular $\leftarrow$ singular control.
+    \item Nonsymmetric Riccati equations.
+  \end{itemize}
+  \item Transition maps (and turnpike) for $\infty$-dimensional systems.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{References}
+
+ \vfill
+
+ Behr, M.; Benner, P. \& Heiland, J. \emph{Invariant Galerkin Ansatz Spaces and
+   Davison-Maki Methods for the Numerical Solution of differential Riccati
+ Equations} arXiv e-prints, 2019, arXiv:1910.13362 
+
+ \vfill
+
+ \hline
+
+ \vfill
+
+ Callier, F. M.; Winkin, J. \& Willems, J. L.  \emph{Convergence of the
+   time-invariant Riccati differential equation and LQ-problem: mechanisms of
+ attraction} International Journal of Control, 1994, 59, 983-1000 
+
+ \vfill
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FRAME	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{large}
+	\begin{center}
+		\color{lapislazuli}\fontfamily{ugq}\selectfont THANK YOU FOR YOUR ATTENTION!\color{black}
+	\end{center}
+\end{large}
+
+\begin{tcolorbox}[width=\textwidth,colframe=darklavender,colback=white]    
+	\small{This project has received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation program (grant agreement No 694126-DYCON).}
+\end{tcolorbox} 
+% \vspace{1cm}   %\vspace{0.5cm}
+% \begin{center} 
+% 	\begin{figure}
+% 		\centering
+% 		\begin{minipage}{0.25\linewidth}
+% 			\includegraphics[scale=0.15]{./logos/logo-ce}
+% 		\end{minipage}
+% 	    \hspace{1cm}
+% 		\begin{minipage}{0.25\linewidth}
+% 			\includegraphics[scale=0.07]{./logos/logo-ERC}
+% 		\end{minipage}
+% 	\end{figure} 
+% \end{center}	
+% 
+% \begin{center}
+% 	\begin{figure}
+% 		\centering
+% 	    \begin{minipage}{0.25\linewidth}
+% 			\includegraphics[scale=0.05]{./logos/logo-DyconERC}
+% 		\end{minipage}
+% 		\hspace{0.5cm}
+% 		\begin{minipage}{0.25\linewidth}
+% 			\includegraphics[scale=0.1]{./logos/logo-deustotech}
+% 		\end{minipage}
+% 		\hspace{0.45cm}
+% 		\begin{minipage}{0.25\linewidth}
+% 			\includegraphics[scale=0.05]{./logos/logo-CCM}
+% 		\end{minipage}
+% 	\end{figure}
+% \end{center}
+\end{frame}
+\end{document}

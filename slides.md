@@ -3,9 +3,8 @@ title: Turnpike and Linear Systems Theory
 author: 
 - Jan Heiland (MPI Magdeburg)
 date: CSC Seminar -- 7 April 2020 
-# institute: GAMM-CSE Workshop G&uuml;zburg, 2019
 bibliography: 
-- tpric.bib
+- talk-tpric.bib
 ---
 
 # Introduction
@@ -448,6 +447,7 @@ $$
 ---
 nocite: |
     @CalWW94
-    @PorZ13
-    @BehBH19a
+    @BehBH19
+    @HeiZ21
 ...
+
