@@ -1,7 +1,13 @@
-# Turnpike and Linear Systems Theory -- Old Formulas and New Results
+---
+title: Turnpike and Linear Systems Theory -- Old Formulas and New Results
+author: Jan Heiland
+linkcolor: blue
+---
 
-It is often observed, that the solution to an optimal control problem on a
-finite but large time horizon stays close to an associated steady state optimal
+In spoken language, the term *turnpike* refers to highways that charge an extra toll (that people will pay probably because it will save them lots of travel time). With that an optimized road trip will look like (1) invest some time and money to get to the turnpike (2) travel on the turnpike (3) leave the turnpike to get to the final destination.
+
+This is an instance of the frequent observation that the solution to an optimal control problem on a
+finite but large time horizon stays close to a steady state optimal
 solution most of the time. This phenomenon is called turnpike property. It has
 been addressed in the research of economics since the 60s and has become a
 popular topic in systems and control in the last 20 years.
@@ -25,6 +31,6 @@ conditions for their convergence to a solution of the generalized ARE. With
 these results, we can characterize the turnpike property for DAE control
 problems.
 
-The slides are available at [`janheiland.de/20-talk-turnpike-dae`](http://janheiland.de/20-talk-turnpike-dae/).
+The slides are available at [`www.janheiland.de/20-talk-turnpike-dae`](https://www.janheiland.de/20-talk-turnpike-dae/).
 
 [^1]: Callier, F. M.; Winkin, J. & Willems, J. L. *Convergence of the time-invariant Riccati differential equation and LQ-problem: mechanisms of attraction.* International Journal of Control, Taylor & Francis, 1994, 59, 983-1000
